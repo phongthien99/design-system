@@ -13,25 +13,13 @@ export type ButtonProps = React.ComponentPropsWithoutRef<typeof ButtonPrimitive>
 
 export const Button = React.forwardRef<React.ElementRef<typeof ButtonPrimitive>, ButtonProps>(
   (
-    {
-      children,
-      className,
-      disabled,
-      isLoading = false,
-      size = "md",
-      type = "button",
-      variant = "primary",
-      ...props
-    },
+    { children, className, disabled, isLoading = false, size = "md", type = "button", variant = "primary", ...props },
     ref
   ) => {
     return (
       <ButtonPrimitive
         ref={ref}
-        className={mergeStateClassName(
-          `ds-button ds-button--${variant} ds-button--${size}`,
-          className
-        )}
+        className={mergeStateClassName(`ds-button ds-button--${variant} ds-button--${size}`, className)}
         data-loading={isLoading ? "true" : undefined}
         disabled={disabled || isLoading}
         type={type}

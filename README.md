@@ -83,6 +83,14 @@ MVP chỉ cần đủ để các product bắt đầu dùng chung UI:
 - Pagination
 - Storybook documentation
 
+### Tiến độ hiện tại (2026-09-20)
+
+- Đã có: monorepo, tokens, theme, Storybook, registry 41 component, CLI `company-ui`, 6/8 component MVP (Button, Input, Select, Checkbox, Dialog, Form).
+- Chưa có: Table, Pagination, test, workflow CI, product pilot.
+- `pnpm build`, `pnpm typecheck`, `pnpm lint` và `pnpm format:check` đều pass (`pnpm lint:fix` / `pnpm format` để tự sửa).
+
+Chi tiết xem [MVP Checklist](docs/08-mvp-checklist.md) và [Registry Implementation Audit](docs/12-registry-implementation-audit.md).
+
 ## Rule ngắn gọn
 
 - Token là nguồn sự thật cho visual foundation.
@@ -109,9 +117,11 @@ CLI MVP hiện có:
 ```bash
 pnpm build
 pnpm company-ui list
-pnpm company-ui add button --cwd /path/to/product
-pnpm company-ui check --cwd /path/to/product
+pnpm company-ui add button --cwd /path/to/product --registry "$PWD/registry.json"
+pnpm company-ui check --cwd /path/to/product --registry "$PWD/registry.json"
 ```
+
+`--registry` bắt buộc khi product nằm ngoài repo này, vì CLI tìm `registry.json` ngược lên từ `--cwd`. `add` hiện chỉ nhận một component mỗi lệnh.
 
 Registry source hiện nằm tại:
 
@@ -121,4 +131,6 @@ registry/company/ui/registry.json
 registry/company/ui/*/*.tsx
 ```
 
-Registry hiện cover toàn bộ public Base UI component exports từ `@base-ui/react@1.8.0`, gồm các item như `accordion`, `autocomplete`, `combobox`, `menu`, `popover`, `select`, `tabs`, `toast`, `tooltip` và các component khác. Các component đã style sẵn như `button`, `input`, `checkbox`, `dialog` vẫn giữ implementation Design System hiện tại; các item còn lại là headless wrappers để Product add source và style dần.
+Muốn thử nghiệm mà không đụng vào source chuẩn: `pnpm personal:sync` tạo bản sandbox `registry/personal` (xem [Registry Model Rules](docs/11-registry-model-rules.md#personal-registry-sandbox)).
+
+Registry hiện cover toàn bộ public Base UI component exports từ `@base-ui/react@1.8.0`, gồm các item như `accordion`, `autocomplete`, `combobox`, `menu`, `popover`, `select`, `tabs`, `toast`, `tooltip` và các component khác. 10 item đã style sẵn (`button`, `input`, `checkbox`, `dialog`, `form-field`, `select`, `switch`, `tabs`, `tooltip`, `popover`); 31 item còn lại là headless wrappers để Product add source và style dần.

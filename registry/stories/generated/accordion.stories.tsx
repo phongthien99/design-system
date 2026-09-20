@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect } from "storybook/test";
 import registry from "../../company/ui/registry.json";
 import { ComponentPreview } from "../component-previews";
 import { playgrounds } from "../playgrounds";
@@ -23,4 +24,18 @@ export const Overview: Story = {};
 
 export const Playground: Story = {
   render: (args) => <ComponentPreview name="accordion" props={args} />
+};
+
+export const OpensOneItemAtATime: Story = {
+  render: (args) => <ComponentPreview name="accordion" props={args} />,
+  play: async ({ canvas, userEvent }) => {
+    const tokens = canvas.getByRole("button", { name: "Token first" });
+    const accessibility = canvas.getByRole("button", { name: "Accessibility" });
+    await expect(tokens).toHaveAttribute("aria-expanded", "true");
+    await expect(accessibility).toHaveAttribute("aria-expanded", "false");
+
+    await userEvent.click(accessibility);
+    await expect(accessibility).toHaveAttribute("aria-expanded", "true");
+    await expect(tokens).toHaveAttribute("aria-expanded", "false");
+  }
 };

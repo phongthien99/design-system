@@ -2,10 +2,7 @@ import { Tooltip as TooltipPrimitive } from "@base-ui/react/tooltip";
 import * as React from "react";
 import { mergeStateClassName } from "@/lib/utils";
 
-function TooltipTrigger({
-  className,
-  ...props
-}: React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Trigger>) {
+function TooltipTrigger({ className, ...props }: React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Trigger>) {
   return <TooltipPrimitive.Trigger className={mergeStateClassName("ds-tooltip-trigger", className)} {...props} />;
 }
 

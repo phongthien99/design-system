@@ -16,4 +16,3 @@ export function EmptyState({ actions, children, description, title, ...props }: 
     </div>
   );
 }
-

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect } from "storybook/test";
 import registry from "../../company/ui/registry.json";
 import { ComponentPreview } from "../component-previews";
 import { playgrounds } from "../playgrounds";
@@ -23,4 +24,30 @@ export const Overview: Story = {};
 
 export const Playground: Story = {
   render: (args) => <ComponentPreview name="checkbox" props={args} />
+};
+
+export const TogglesOnClick: Story = {
+  args: { defaultChecked: false, label: "Receive product updates" },
+  render: (args) => <ComponentPreview name="checkbox" props={args} />,
+  play: async ({ canvas, userEvent }) => {
+    const checkbox = canvas.getByRole("checkbox", { name: /receive product updates/i });
+    await expect(checkbox).not.toBeChecked();
+
+    await userEvent.click(checkbox);
+    await expect(checkbox).toBeChecked();
+
+    await userEvent.click(checkbox);
+    await expect(checkbox).not.toBeChecked();
+  }
+};
+
+export const DisabledIgnoresClick: Story = {
+  args: { defaultChecked: false, disabled: true, label: "Receive product updates" },
+  render: (args) => <ComponentPreview name="checkbox" props={args} />,
+  play: async ({ canvas, userEvent }) => {
+    const checkbox = canvas.getByRole("checkbox", { name: /receive product updates/i });
+
+    await userEvent.click(checkbox);
+    await expect(checkbox).not.toBeChecked();
+  }
 };

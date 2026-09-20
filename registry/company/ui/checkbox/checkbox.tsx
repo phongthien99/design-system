@@ -38,4 +38,3 @@ function CheckIcon(props: React.ComponentProps<"svg">) {
     </svg>
   );
 }
-

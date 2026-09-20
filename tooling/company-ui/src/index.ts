@@ -403,10 +403,7 @@ async function readCompanyUiConfig(cwd: string): Promise<CompanyUiConfig> {
 }
 
 async function writeCompanyUiConfig(cwd: string, config: CompanyUiConfig) {
-  await writeFile(
-    path.resolve(cwd, "company-ui.json"),
-    `${JSON.stringify(config, null, 2)}\n`
-  );
+  await writeFile(path.resolve(cwd, "company-ui.json"), `${JSON.stringify(config, null, 2)}\n`);
 }
 
 async function updatePackageJson(
@@ -445,9 +442,7 @@ async function updatePackageJson(
 }
 
 function parseDependency(dependency: string) {
-  const atIndex = dependency.startsWith("@")
-    ? dependency.indexOf("@", 1)
-    : dependency.indexOf("@");
+  const atIndex = dependency.startsWith("@") ? dependency.indexOf("@", 1) : dependency.indexOf("@");
 
   if (atIndex > 0) {
     return {
@@ -527,4 +522,3 @@ Usage:
 }
 
 void main();
-

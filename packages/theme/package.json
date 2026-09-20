@@ -2,7 +2,9 @@
   "name": "@company/theme",
   "version": "0.1.0",
   "type": "module",
-  "sideEffects": ["src/styles.css"],
+  "sideEffects": [
+    "src/styles.css"
+  ],
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -17,11 +19,13 @@
       "import": "./dist/tailwind-preset.js"
     }
   },
-  "files": ["dist", "src/styles.css"],
+  "files": [
+    "dist",
+    "src/styles.css"
+  ],
   "scripts": {
     "build": "tsup src/index.ts src/tailwind-preset.ts --format esm --dts --clean",
     "dev": "tsup src/index.ts src/tailwind-preset.ts --format esm --dts --watch",
-    "lint": "tsc --noEmit",
     "typecheck": "tsc --noEmit",
     "test": "vitest run --passWithNoTests"
   },
@@ -34,4 +38,3 @@
     "vitest": "^3.2.4"
   }
 }
-

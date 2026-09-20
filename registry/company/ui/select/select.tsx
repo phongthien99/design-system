@@ -18,11 +18,7 @@ function SelectValue(props: React.ComponentPropsWithoutRef<typeof SelectPrimitiv
   return <SelectPrimitive.Value {...props} />;
 }
 
-function SelectIcon({
-  className,
-  children,
-  ...props
-}: React.ComponentPropsWithoutRef<typeof SelectPrimitive.Icon>) {
+function SelectIcon({ className, children, ...props }: React.ComponentPropsWithoutRef<typeof SelectPrimitive.Icon>) {
   return (
     <SelectPrimitive.Icon className={mergeStateClassName("ds-select-icon", className)} {...props}>
       {children ?? <ChevronDownIcon />}
@@ -34,25 +30,15 @@ function SelectPositioner(props: React.ComponentPropsWithoutRef<typeof SelectPri
   return <SelectPrimitive.Positioner sideOffset={props.sideOffset ?? 6} {...props} />;
 }
 
-function SelectPopup({
-  className,
-  ...props
-}: React.ComponentPropsWithoutRef<typeof SelectPrimitive.Popup>) {
+function SelectPopup({ className, ...props }: React.ComponentPropsWithoutRef<typeof SelectPrimitive.Popup>) {
   return <SelectPrimitive.Popup className={mergeStateClassName("ds-select-popup", className)} {...props} />;
 }
 
-function SelectList({
-  className,
-  ...props
-}: React.ComponentPropsWithoutRef<typeof SelectPrimitive.List>) {
+function SelectList({ className, ...props }: React.ComponentPropsWithoutRef<typeof SelectPrimitive.List>) {
   return <SelectPrimitive.List className={mergeStateClassName("ds-select-list", className)} {...props} />;
 }
 
-function SelectItem({
-  className,
-  children,
-  ...props
-}: React.ComponentPropsWithoutRef<typeof SelectPrimitive.Item>) {
+function SelectItem({ className, children, ...props }: React.ComponentPropsWithoutRef<typeof SelectPrimitive.Item>) {
   return (
     <SelectPrimitive.Item className={mergeStateClassName("ds-select-item", className)} {...props}>
       <SelectPrimitive.ItemIndicator className="ds-select-item-indicator">
@@ -63,32 +49,16 @@ function SelectItem({
   );
 }
 
-function SelectGroup({
-  className,
-  ...props
-}: React.ComponentPropsWithoutRef<typeof SelectPrimitive.Group>) {
+function SelectGroup({ className, ...props }: React.ComponentPropsWithoutRef<typeof SelectPrimitive.Group>) {
   return <SelectPrimitive.Group className={mergeStateClassName("ds-select-group", className)} {...props} />;
 }
 
-function SelectGroupLabel({
-  className,
-  ...props
-}: React.ComponentPropsWithoutRef<typeof SelectPrimitive.GroupLabel>) {
-  return (
-    <SelectPrimitive.GroupLabel
-      className={mergeStateClassName("ds-select-group-label", className)}
-      {...props}
-    />
-  );
+function SelectGroupLabel({ className, ...props }: React.ComponentPropsWithoutRef<typeof SelectPrimitive.GroupLabel>) {
+  return <SelectPrimitive.GroupLabel className={mergeStateClassName("ds-select-group-label", className)} {...props} />;
 }
 
-function SelectSeparator({
-  className,
-  ...props
-}: React.ComponentPropsWithoutRef<typeof SelectPrimitive.Separator>) {
-  return (
-    <SelectPrimitive.Separator className={mergeStateClassName("ds-select-separator", className)} {...props} />
-  );
+function SelectSeparator({ className, ...props }: React.ComponentPropsWithoutRef<typeof SelectPrimitive.Separator>) {
+  return <SelectPrimitive.Separator className={mergeStateClassName("ds-select-separator", className)} {...props} />;
 }
 
 export const Select = {

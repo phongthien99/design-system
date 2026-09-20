@@ -378,3 +378,19 @@ So với kế hoạch tự build metadata riêng, cần thêm hoặc đổi các
 8. Tạo template `components.json` cho Product với `registries`.
 9. Validate schema bằng JSON schema hoặc `shadcn/schema`.
 10. Nếu cần `company-ui check/update`, vẫn cần tracking riêng như `company-ui.json` vì shadcn schema không thay thế governance nội bộ.
+
+## Personal registry (sandbox)
+
+`registry/personal` là bản copy local của `registry/company/ui` (kèm Storybook stories) để thử nghiệm và so sánh với company. Đây **không** phải nguồn chuẩn, không được release và bị `.gitignore`; chỉ `registry.personal.json` và `scripts/personal.mjs` được commit.
+
+```bash
+pnpm personal:sync          # copy company -> personal, KHÔNG ghi đè file đã có
+pnpm personal:sync --force  # ghi đè toàn bộ personal từ company
+pnpm personal:diff          # liệt kê file personal khác company (thêm --patch để xem diff)
+pnpm personal:list          # liệt kê item của personal registry qua company-ui
+pnpm typecheck:personal     # typecheck riêng ui + stories của personal
+```
+
+- Thêm component vào Product từ personal: `company-ui add button --cwd /path/to/product --registry "$PWD/registry.personal.json"`.
+- Storybook hiển thị nhóm `Registry/Personal UI/*`; `@/lib/utils` trong `registry/personal` resolve về `registry/personal/ui/utils`, không phải company.
+- Component mới của company được thêm vào personal khi chạy lại `personal:sync` (file personal đã sửa được giữ nguyên).

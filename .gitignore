@@ -4,4 +4,5 @@ storybook-static
 .turbo
 .DS_Store
 *.log
+registry/personal/
 

@@ -20,4 +20,3 @@ export function CheckIcon(props: IconProps) {
     </svg>
   );
 }
-

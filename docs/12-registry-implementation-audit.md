@@ -2,6 +2,26 @@
 
 Audit này kiểm tra repo hiện tại so với Registry Model Rules.
 
+Cập nhật lần cuối: 2026-09-20. Tiến độ theo từng component và checklist release nằm ở [MVP Checklist](08-mvp-checklist.md).
+
+## Snapshot kiểm tra ngày 2026-09-20
+
+| Kiểm tra | Kết quả |
+| --- | --- |
+| `pnpm build` | Pass, 7/7 task, gồm Storybook build |
+| `pnpm typecheck` | Pass (trước đó fail 39 lỗi TS2322 ở generated stories, đã sửa trong `registry/stories/playgrounds.tsx`) |
+| `pnpm typecheck:registry` | Pass |
+| `pnpm test` | Pass nhưng **không có test file nào** (`--passWithNoTests`) |
+| `pnpm lint` | ESLint (`eslint .`) — pass. `pnpm format:check` (Prettier) cũng pass |
+| `company-ui list` | Pass, liệt kê 42 item (41 `registry:ui` + `utils`) |
+| `company-ui add button` trên product giả | Pass, ghi `lib/utils.ts`, `components/ui/button.tsx`, `company-ui.json`, cập nhật `package.json`; `check` báo `up to date` |
+
+Giới hạn CLI phát hiện khi thử:
+
+- `add` chỉ nhận một tên mỗi lệnh; `add button dialog` chỉ add `button`.
+- `registry.json` được tìm ngược lên từ `--cwd`, nên product nằm ngoài repo này phải truyền `--registry <path>`.
+- Dependency nội bộ như `@company/theme` được ghi vào `package.json` với version `latest`, trong khi package này đang `private` và chưa publish.
+
 ## Kết luận nhanh
 
 Repo hiện tại đã có foundation tốt cho Design System và đã có **Registry Model MVP**.
@@ -25,8 +45,9 @@ Registry Model MVP hiện dùng shadcn-compatible registry:
 registry.json
 registry/
   company/ui/registry.json
-  components/ui/button/button.tsx
-  components/ui/dialog/dialog.tsx
+  company/ui/button/button.tsx
+  company/ui/dialog/dialog.tsx
+  stories/
 tooling/company-ui/
 templates/components.json
 ```
@@ -58,7 +79,7 @@ real package-manager install after package.json update
 | R11 - Không overwrite | Partial | `add` không overwrite file nếu không có `--force`; chưa có `diff -> review -> apply`. |
 | R12 - Version Tracking | Done | CLI ghi `company-ui.json` với hash của registry item. |
 | R13 - Product chủ động update | Partial | Có `check` để báo update qua hash; chưa có `diff`/`update`. |
-| R14 - CI kiểm tra chuẩn | Partial | Có `typecheck`, `test`, `build`, Storybook build. Chưa có visual test/a11y gate bắt buộc. |
+| R14 - CI kiểm tra chuẩn | Partial | Có script `typecheck`, `test`, `build`, Storybook build nhưng chưa có workflow CI. `typecheck` đã pass nhưng chưa có test file, visual test và a11y gate. |
 | R15 - Registry là source of truth | Done | Source chuẩn nằm trong `registry/company/ui`; `packages/ui` đã bị xóa. |
 | R16 - Không dùng `@company/ui` | Done | Workspace không còn package `@company/ui`; Product rule yêu cầu import local source. |
 | R17 - Xóa runtime UI package | Done | Đã gỡ `packages/ui` khỏi repo, Storybook, tsconfig và lockfile. |
@@ -121,7 +142,7 @@ packages/primitives/src/checkbox/index.ts
 
 ### UI registry components
 
-`packages/ui` đã bị xóa. Source chuẩn hiện nằm trong:
+`packages/ui` đã bị xóa. Source chuẩn nằm trong `registry/company/ui`. 10 item hiện có style riêng (class `ds-*` trong `packages/theme/src/styles.css`):
 
 ```txt
 registry/company/ui/button/button.tsx
@@ -129,7 +150,14 @@ registry/company/ui/input/input.tsx
 registry/company/ui/checkbox/checkbox.tsx
 registry/company/ui/dialog/dialog.tsx
 registry/company/ui/form-field/form-field.tsx
+registry/company/ui/select/select.tsx
+registry/company/ui/switch/switch.tsx
+registry/company/ui/tabs/tabs.tsx
+registry/company/ui/tooltip/tooltip.tsx
+registry/company/ui/popover/popover.tsx
 ```
+
+31 item còn lại là headless wrapper (xem bên dưới). Chưa có Table, Pagination, Textarea, Badge, Alert trong registry.
 
 ### Storybook
 
@@ -145,6 +173,8 @@ Storybook đang load stories từ:
 packages/patterns/src/**/*.stories.tsx
 registry/stories/**/*.stories.tsx
 ```
+
+Hiện có 41 story component (`registry/stories/generated`, mỗi component có `Overview` và `Playground`), story `Registry/All Components` và story `EmptyState`. Addon `docs`, `a11y`, `vitest` đã cài; a11y đang ở mức `todo`, chưa chặn build. Storybook build và typecheck đều pass.
 
 ### Shadcn-compatible registry
 
@@ -169,7 +199,7 @@ Registry đang dùng:
 - `registryDependencies` cho dependency giữa registry items.
 - `files[].target` với `@ui/` và `@lib/`.
 
-Registry hiện cover toàn bộ public Base UI component exports của `@base-ui/react@1.8.0`:
+Registry hiện cover toàn bộ 40 public Base UI component exports của `@base-ui/react@1.8.0` (cộng thêm `form-field` của Design System):
 
 ```txt
 accordion
@@ -286,23 +316,28 @@ pnpm install
 
 `company-ui.json` đã được generate khi chạy CLI, nhưng repo này chưa có product app thật để commit file đó.
 
-### Diff/update workflow
+### CLI nhận nhiều component
 
-Chưa có logic:
+`company-ui add button input` chưa hoạt động, chỉ item đầu tiên được add.
 
-```txt
-registry source
-      vs
-product source
-      ↓
-diff -> review -> apply
-```
+### CI workflow
 
-### CI visual/a11y gate
+Chưa có workflow CI (GitHub Actions hoặc tương đương) chạy `lint`, `typecheck`, `test`, `build`. Typecheck đã xanh nên có thể bật gate.
 
-Chưa có visual regression tool hoặc a11y test runner bắt buộc trong CI.
+### Test
+
+Chưa có test file nào trong repo. Mục tiêu đầu tiên: Button, Input, Checkbox, Dialog.
+
+### Visual/a11y gate
+
+Chưa có visual regression tool. Addon a11y đã cài nhưng chưa bật chế độ chặn (`a11y.test` đang là `todo`).
 
 ## Roadmap tiếp theo
+
+### Step 0 - Làm đủ gate hiện có
+
+- Viết test đầu tiên để `pnpm test` không còn xanh vì không có test.
+- Làm Table và Pagination cho đủ MVP.
 
 ### Step 1 - Dùng Product template
 

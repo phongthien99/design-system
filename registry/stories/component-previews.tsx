@@ -52,8 +52,7 @@ import { Toolbar } from "../company/ui/toolbar/toolbar";
 
 const fruits = ["Apple", "Banana", "Blueberry", "Grape", "Orange", "Strawberry"];
 const fruitItems = fruits.map((fruit) => ({ label: fruit, value: fruit.toLowerCase() }));
-const defaultAvatarSrc =
-  "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&h=96&fit=crop&crop=faces";
+const defaultAvatarSrc = "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&h=96&fit=crop&crop=faces";
 
 // Preview props come from Storybook Controls (Playground) or are empty (Overview).
 type PreviewProps = Record<string, any>;
@@ -105,8 +104,7 @@ export function ComponentPreview({ name, props }: { name: string; props?: Previe
 
   // Overview shows a gallery of states for checkbox; the Playground shows a single instance.
   const Preview = (props && name === "checkbox" ? CheckboxPlayground : previews[name]) as
-    | ((props: PreviewProps) => ReactElement)
-    | undefined;
+    ((props: PreviewProps) => ReactElement) | undefined;
 
   return (
     <div style={styles.previewCanvas}>
@@ -194,9 +192,7 @@ function DialogPreview(props: PreviewProps) {
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Confirm publish</DialogTitle>
-          <DialogDescription>
-            This dialog uses the registry Dialog wrapper backed by Base UI.
-          </DialogDescription>
+          <DialogDescription>This dialog uses the registry Dialog wrapper backed by Base UI.</DialogDescription>
         </DialogHeader>
         <p style={styles.bodyText}>Keyboard focus, escape close and portal behavior come from Base UI.</p>
         <DialogFooter>
@@ -272,7 +268,9 @@ function SelectPreview(props: PreviewProps) {
           <Select.Popup>
             <Select.List>
               {fruits.map((fruit) => (
-                <Select.Item key={fruit} value={fruit.toLowerCase()}>{fruit}</Select.Item>
+                <Select.Item key={fruit} value={fruit.toLowerCase()}>
+                  {fruit}
+                </Select.Item>
               ))}
             </Select.List>
           </Select.Popup>
@@ -340,7 +338,11 @@ function TabsPreview({ orientation = "horizontal", ...props }: PreviewProps) {
     <Tabs.Root
       defaultValue="overview"
       orientation={orientation}
-      style={{ ...styles.compactPanel, gridAutoFlow: vertical ? "column" : "row", gridTemplateColumns: vertical ? "auto 1fr" : undefined }}
+      style={{
+        ...styles.compactPanel,
+        gridAutoFlow: vertical ? "column" : "row",
+        gridTemplateColumns: vertical ? "auto 1fr" : undefined
+      }}
       {...props}
     >
       <Tabs.List
@@ -395,7 +397,9 @@ function PopoverPreview({ side, align, ...props }: PreviewProps) {
         <Popover.Positioner sideOffset={8} side={side} align={align}>
           <Popover.Popup style={styles.popup}>
             <Popover.Title style={styles.popTitle}>Filter</Popover.Title>
-            <Popover.Description style={styles.bodyText}>Popover content is portalled and positioned.</Popover.Description>
+            <Popover.Description style={styles.bodyText}>
+              Popover content is portalled and positioned.
+            </Popover.Description>
             <Popover.Close style={styles.smallButton}>Close</Popover.Close>
           </Popover.Popup>
         </Popover.Positioner>
@@ -548,9 +552,7 @@ function ToastPreview({ title = "Changes saved", description = "Registry item up
 function ToastTrigger({ title, description }: { title: string; description: string }) {
   const toastManager = Toast.useToastManager();
 
-  return (
-    <Button onClick={() => toastManager.add({ title, description })}>Show toast</Button>
-  );
+  return <Button onClick={() => toastManager.add({ title, description })}>Show toast</Button>;
 }
 
 function ToastList() {
@@ -688,7 +690,14 @@ function SeparatorPreview({ orientation = "horizontal", ...props }: PreviewProps
     <div
       style={
         vertical
-          ? { ...styles.compactPanel, alignItems: "center", display: "flex", gap: "12px", height: "72px", width: "auto" }
+          ? {
+              ...styles.compactPanel,
+              alignItems: "center",
+              display: "flex",
+              gap: "12px",
+              height: "72px",
+              width: "auto"
+            }
           : styles.compactPanel
       }
     >
@@ -786,7 +795,13 @@ function FormPreview({ validationMode = "onSubmit", ...props }: PreviewProps) {
         <Field.Error style={styles.errorText} />
       </Field.Root>
       <Field.Root name="password" style={styles.previewGrid}>
-        <Field.Control className="ds-input ds-input--md" minLength={8} placeholder="Password (8+ characters)" required type="password" />
+        <Field.Control
+          className="ds-input ds-input--md"
+          minLength={8}
+          placeholder="Password (8+ characters)"
+          required
+          type="password"
+        />
         <Field.Error style={styles.errorText} />
       </Field.Root>
       <Button type="submit">Submit</Button>
@@ -800,7 +815,12 @@ function FormFieldPreview({
   error = ""
 }: PreviewProps) {
   return (
-    <FormField label={label} description={description || undefined} error={error || undefined} style={styles.previewGrid}>
+    <FormField
+      label={label}
+      description={description || undefined}
+      error={error || undefined}
+      style={styles.previewGrid}
+    >
       <Input isInvalid={Boolean(error)} placeholder="name@company.com" />
     </FormField>
   );

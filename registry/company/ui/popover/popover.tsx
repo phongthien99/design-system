@@ -2,10 +2,7 @@ import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
 import * as React from "react";
 import { mergeStateClassName } from "@/lib/utils";
 
-function PopoverTrigger({
-  className,
-  ...props
-}: React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Trigger>) {
+function PopoverTrigger({ className, ...props }: React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Trigger>) {
   return <PopoverPrimitive.Trigger className={mergeStateClassName("ds-popover-trigger", className)} {...props} />;
 }
 
@@ -30,10 +27,7 @@ function PopoverDescription({
   ...props
 }: React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Description>) {
   return (
-    <PopoverPrimitive.Description
-      className={mergeStateClassName("ds-popover-description", className)}
-      {...props}
-    />
+    <PopoverPrimitive.Description className={mergeStateClassName("ds-popover-description", className)} {...props} />
   );
 }
 

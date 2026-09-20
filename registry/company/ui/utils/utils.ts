@@ -12,4 +12,3 @@ export function mergeStateClassName<State>(
 
   return cn(baseClassName, className);
 }
-

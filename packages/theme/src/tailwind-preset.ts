@@ -38,4 +38,3 @@ const tailwindPreset = {
 };
 
 export default tailwindPreset;
-

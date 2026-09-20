@@ -1,5 +1,5 @@
 import type { ArgTypes } from "@storybook/react-vite";
-import type { ElementType } from "react";
+import type { ComponentType } from "react";
 import { Accordion } from "../company/ui/accordion/accordion";
 import { AlertDialog } from "../company/ui/alert-dialog/alert-dialog";
 import { Autocomplete } from "../company/ui/autocomplete/autocomplete";
@@ -42,7 +42,7 @@ import { Tooltip } from "../company/ui/tooltip/tooltip";
 export type PlaygroundConfig = {
   args: Record<string, unknown>;
   argTypes: ArgTypes;
-  component: ElementType;
+  component: ComponentType<any>;
 };
 
 const bool = { control: "boolean" } as const;

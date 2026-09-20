@@ -7,14 +7,7 @@ export type FormFieldProps = React.ComponentPropsWithoutRef<"div"> & {
   label: React.ReactNode;
 };
 
-export function FormField({
-  children,
-  className,
-  description,
-  error,
-  label,
-  ...props
-}: FormFieldProps) {
+export function FormField({ children, className, description, error, label, ...props }: FormFieldProps) {
   return (
     <div className={cn("ds-form-field", className)} {...props}>
       <label className="ds-form-label">{label}</label>
@@ -24,4 +17,3 @@ export function FormField({
     </div>
   );
 }
-

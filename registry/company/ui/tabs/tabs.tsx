@@ -10,10 +10,7 @@ function TabsTab({ className, ...props }: React.ComponentPropsWithoutRef<typeof 
   return <TabsPrimitive.Tab className={mergeStateClassName("ds-tabs-tab", className)} {...props} />;
 }
 
-function TabsIndicator({
-  className,
-  ...props
-}: React.ComponentPropsWithoutRef<typeof TabsPrimitive.Indicator>) {
+function TabsIndicator({ className, ...props }: React.ComponentPropsWithoutRef<typeof TabsPrimitive.Indicator>) {
   return <TabsPrimitive.Indicator className={mergeStateClassName("ds-tabs-indicator", className)} {...props} />;
 }
 

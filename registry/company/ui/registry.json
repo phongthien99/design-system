@@ -19,9 +19,7 @@
       "type": "registry:ui",
       "title": "Accordion",
       "description": "Headless Accordion primitive from Base UI.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
+      "dependencies": ["@base-ui/react"],
       "files": [
         {
           "path": "accordion/accordion.tsx",
@@ -35,9 +33,7 @@
       "type": "registry:ui",
       "title": "Alert Dialog",
       "description": "Headless Alert Dialog primitive from Base UI.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
+      "dependencies": ["@base-ui/react"],
       "files": [
         {
           "path": "alert-dialog/alert-dialog.tsx",
@@ -51,9 +47,7 @@
       "type": "registry:ui",
       "title": "Autocomplete",
       "description": "Headless Autocomplete primitive from Base UI.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
+      "dependencies": ["@base-ui/react"],
       "files": [
         {
           "path": "autocomplete/autocomplete.tsx",
@@ -67,9 +61,7 @@
       "type": "registry:ui",
       "title": "Avatar",
       "description": "Headless Avatar primitive from Base UI.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
+      "dependencies": ["@base-ui/react"],
       "files": [
         {
           "path": "avatar/avatar.tsx",
@@ -83,13 +75,8 @@
       "type": "registry:ui",
       "title": "Button",
       "description": "Styled Company button built on Base UI Button.",
-      "dependencies": [
-        "@base-ui/react",
-        "@company/theme"
-      ],
-      "registryDependencies": [
-        "utils"
-      ],
+      "dependencies": ["@base-ui/react", "@company/theme"],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "button/button.tsx",
@@ -103,13 +90,8 @@
       "type": "registry:ui",
       "title": "Checkbox",
       "description": "Accessible checkbox built on Base UI.",
-      "dependencies": [
-        "@base-ui/react",
-        "@company/theme"
-      ],
-      "registryDependencies": [
-        "utils"
-      ],
+      "dependencies": ["@base-ui/react", "@company/theme"],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "checkbox/checkbox.tsx",
@@ -123,9 +105,7 @@
       "type": "registry:ui",
       "title": "Checkbox Group",
       "description": "Headless Checkbox Group primitive from Base UI.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
+      "dependencies": ["@base-ui/react"],
       "files": [
         {
           "path": "checkbox-group/checkbox-group.tsx",
@@ -139,9 +119,7 @@
       "type": "registry:ui",
       "title": "Collapsible",
       "description": "Headless Collapsible primitive from Base UI.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
+      "dependencies": ["@base-ui/react"],
       "files": [
         {
           "path": "collapsible/collapsible.tsx",
@@ -155,9 +133,7 @@
       "type": "registry:ui",
       "title": "Combobox",
       "description": "Headless Combobox primitive from Base UI.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
+      "dependencies": ["@base-ui/react"],
       "files": [
         {
           "path": "combobox/combobox.tsx",
@@ -171,9 +147,7 @@
       "type": "registry:ui",
       "title": "Context Menu",
       "description": "Headless Context Menu primitive from Base UI.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
+      "dependencies": ["@base-ui/react"],
       "files": [
         {
           "path": "context-menu/context-menu.tsx",
@@ -187,9 +161,7 @@
       "type": "registry:ui",
       "title": "Csp Provider",
       "description": "Headless Csp Provider primitive from Base UI.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
+      "dependencies": ["@base-ui/react"],
       "files": [
         {
           "path": "csp-provider/csp-provider.tsx",
@@ -203,14 +175,8 @@
       "type": "registry:ui",
       "title": "Dialog",
       "description": "Accessible modal dialog built on Base UI.",
-      "dependencies": [
-        "@base-ui/react",
-        "@company/theme"
-      ],
-      "registryDependencies": [
-        "button",
-        "utils"
-      ],
+      "dependencies": ["@base-ui/react", "@company/theme"],
+      "registryDependencies": ["button", "utils"],
       "files": [
         {
           "path": "dialog/dialog.tsx",
@@ -224,9 +190,7 @@
       "type": "registry:ui",
       "title": "Direction Provider",
       "description": "Headless Direction Provider primitive from Base UI.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
+      "dependencies": ["@base-ui/react"],
       "files": [
         {
           "path": "direction-provider/direction-provider.tsx",
@@ -240,9 +204,7 @@
       "type": "registry:ui",
       "title": "Drawer",
       "description": "Headless Drawer primitive from Base UI.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
+      "dependencies": ["@base-ui/react"],
       "files": [
         {
           "path": "drawer/drawer.tsx",
@@ -256,9 +218,7 @@
       "type": "registry:ui",
       "title": "Field",
       "description": "Headless Field primitive from Base UI.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
+      "dependencies": ["@base-ui/react"],
       "files": [
         {
           "path": "field/field.tsx",
@@ -272,9 +232,7 @@
       "type": "registry:ui",
       "title": "Fieldset",
       "description": "Headless Fieldset primitive from Base UI.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
+      "dependencies": ["@base-ui/react"],
       "files": [
         {
           "path": "fieldset/fieldset.tsx",
@@ -288,9 +246,7 @@
       "type": "registry:ui",
       "title": "Form",
       "description": "Headless Form primitive from Base UI.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
+      "dependencies": ["@base-ui/react"],
       "files": [
         {
           "path": "form/form.tsx",
@@ -304,13 +260,8 @@
       "type": "registry:ui",
       "title": "Input",
       "description": "Styled Company input built on Base UI Input.",
-      "dependencies": [
-        "@base-ui/react",
-        "@company/theme"
-      ],
-      "registryDependencies": [
-        "utils"
-      ],
+      "dependencies": ["@base-ui/react", "@company/theme"],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "input/input.tsx",
@@ -324,9 +275,7 @@
       "type": "registry:ui",
       "title": "Menu",
       "description": "Headless Menu primitive from Base UI.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
+      "dependencies": ["@base-ui/react"],
       "files": [
         {
           "path": "menu/menu.tsx",
@@ -340,9 +289,7 @@
       "type": "registry:ui",
       "title": "Menubar",
       "description": "Headless Menubar primitive from Base UI.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
+      "dependencies": ["@base-ui/react"],
       "files": [
         {
           "path": "menubar/menubar.tsx",
@@ -356,9 +303,7 @@
       "type": "registry:ui",
       "title": "Meter",
       "description": "Headless Meter primitive from Base UI.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
+      "dependencies": ["@base-ui/react"],
       "files": [
         {
           "path": "meter/meter.tsx",
@@ -372,9 +317,7 @@
       "type": "registry:ui",
       "title": "Navigation Menu",
       "description": "Headless Navigation Menu primitive from Base UI.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
+      "dependencies": ["@base-ui/react"],
       "files": [
         {
           "path": "navigation-menu/navigation-menu.tsx",
@@ -388,9 +331,7 @@
       "type": "registry:ui",
       "title": "Number Field",
       "description": "Headless Number Field primitive from Base UI.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
+      "dependencies": ["@base-ui/react"],
       "files": [
         {
           "path": "number-field/number-field.tsx",
@@ -404,9 +345,7 @@
       "type": "registry:ui",
       "title": "Otp Field",
       "description": "Headless Otp Field primitive from Base UI.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
+      "dependencies": ["@base-ui/react"],
       "files": [
         {
           "path": "otp-field/otp-field.tsx",
@@ -420,13 +359,8 @@
       "type": "registry:ui",
       "title": "Popover",
       "description": "Styled Company popover built on Base UI Popover.",
-      "dependencies": [
-        "@base-ui/react",
-        "@company/theme"
-      ],
-      "registryDependencies": [
-        "utils"
-      ],
+      "dependencies": ["@base-ui/react", "@company/theme"],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "popover/popover.tsx",
@@ -440,9 +374,7 @@
       "type": "registry:ui",
       "title": "Preview Card",
       "description": "Headless Preview Card primitive from Base UI.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
+      "dependencies": ["@base-ui/react"],
       "files": [
         {
           "path": "preview-card/preview-card.tsx",
@@ -456,9 +388,7 @@
       "type": "registry:ui",
       "title": "Progress",
       "description": "Headless Progress primitive from Base UI.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
+      "dependencies": ["@base-ui/react"],
       "files": [
         {
           "path": "progress/progress.tsx",
@@ -472,9 +402,7 @@
       "type": "registry:ui",
       "title": "Radio",
       "description": "Headless Radio primitive from Base UI.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
+      "dependencies": ["@base-ui/react"],
       "files": [
         {
           "path": "radio/radio.tsx",
@@ -488,9 +416,7 @@
       "type": "registry:ui",
       "title": "Radio Group",
       "description": "Headless Radio Group primitive from Base UI.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
+      "dependencies": ["@base-ui/react"],
       "files": [
         {
           "path": "radio-group/radio-group.tsx",
@@ -504,9 +430,7 @@
       "type": "registry:ui",
       "title": "Scroll Area",
       "description": "Headless Scroll Area primitive from Base UI.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
+      "dependencies": ["@base-ui/react"],
       "files": [
         {
           "path": "scroll-area/scroll-area.tsx",
@@ -520,13 +444,8 @@
       "type": "registry:ui",
       "title": "Select",
       "description": "Styled Company select built on Base UI Select.",
-      "dependencies": [
-        "@base-ui/react",
-        "@company/theme"
-      ],
-      "registryDependencies": [
-        "utils"
-      ],
+      "dependencies": ["@base-ui/react", "@company/theme"],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "select/select.tsx",
@@ -540,9 +459,7 @@
       "type": "registry:ui",
       "title": "Separator",
       "description": "Headless Separator primitive from Base UI.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
+      "dependencies": ["@base-ui/react"],
       "files": [
         {
           "path": "separator/separator.tsx",
@@ -556,9 +473,7 @@
       "type": "registry:ui",
       "title": "Slider",
       "description": "Headless Slider primitive from Base UI.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
+      "dependencies": ["@base-ui/react"],
       "files": [
         {
           "path": "slider/slider.tsx",
@@ -572,13 +487,8 @@
       "type": "registry:ui",
       "title": "Switch",
       "description": "Styled Company switch built on Base UI Switch.",
-      "dependencies": [
-        "@base-ui/react",
-        "@company/theme"
-      ],
-      "registryDependencies": [
-        "utils"
-      ],
+      "dependencies": ["@base-ui/react", "@company/theme"],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "switch/switch.tsx",
@@ -592,13 +502,8 @@
       "type": "registry:ui",
       "title": "Tabs",
       "description": "Styled Company tabs built on Base UI Tabs.",
-      "dependencies": [
-        "@base-ui/react",
-        "@company/theme"
-      ],
-      "registryDependencies": [
-        "utils"
-      ],
+      "dependencies": ["@base-ui/react", "@company/theme"],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "tabs/tabs.tsx",
@@ -612,9 +517,7 @@
       "type": "registry:ui",
       "title": "Toast",
       "description": "Headless Toast primitive from Base UI.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
+      "dependencies": ["@base-ui/react"],
       "files": [
         {
           "path": "toast/toast.tsx",
@@ -628,9 +531,7 @@
       "type": "registry:ui",
       "title": "Toggle",
       "description": "Headless Toggle primitive from Base UI.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
+      "dependencies": ["@base-ui/react"],
       "files": [
         {
           "path": "toggle/toggle.tsx",
@@ -644,9 +545,7 @@
       "type": "registry:ui",
       "title": "Toggle Group",
       "description": "Headless Toggle Group primitive from Base UI.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
+      "dependencies": ["@base-ui/react"],
       "files": [
         {
           "path": "toggle-group/toggle-group.tsx",
@@ -660,9 +559,7 @@
       "type": "registry:ui",
       "title": "Toolbar",
       "description": "Headless Toolbar primitive from Base UI.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
+      "dependencies": ["@base-ui/react"],
       "files": [
         {
           "path": "toolbar/toolbar.tsx",
@@ -676,13 +573,8 @@
       "type": "registry:ui",
       "title": "Tooltip",
       "description": "Styled Company tooltip built on Base UI Tooltip.",
-      "dependencies": [
-        "@base-ui/react",
-        "@company/theme"
-      ],
-      "registryDependencies": [
-        "utils"
-      ],
+      "dependencies": ["@base-ui/react", "@company/theme"],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "tooltip/tooltip.tsx",
@@ -696,12 +588,8 @@
       "type": "registry:ui",
       "title": "Form Field",
       "description": "Composes label, description, error, and form control content.",
-      "dependencies": [
-        "@company/theme"
-      ],
-      "registryDependencies": [
-        "utils"
-      ],
+      "dependencies": ["@company/theme"],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "form-field/form-field.tsx",

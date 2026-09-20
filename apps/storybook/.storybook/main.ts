@@ -8,13 +8,10 @@ const rootDir = resolve(currentDir, "../../..");
 const config: StorybookConfig = {
   stories: [
     "../../../packages/patterns/src/**/*.stories.@(ts|tsx)",
-    "../../../registry/stories/**/*.stories.@(ts|tsx)"
+    "../../../registry/stories/**/*.stories.@(ts|tsx)",
+    "../../../registry/personal/stories/**/*.stories.@(ts|tsx)"
   ],
-  addons: [
-    "@storybook/addon-docs",
-    "@storybook/addon-a11y",
-    "@storybook/addon-vitest"
-  ],
+  addons: ["@storybook/addon-docs", "@storybook/addon-a11y", "@storybook/addon-vitest", "@chromatic-com/storybook"],
   framework: {
     name: "@storybook/react-vite",
     options: {}
@@ -42,14 +39,34 @@ const config: StorybookConfig = {
       {
         find: /^@company\/tokens\/tokens\.css$/,
         replacement: resolve(rootDir, "packages/tokens/src/tokens.css")
-      },
-      { find: /^@\/components\/ui\/(.*)$/, replacement: resolve(rootDir, "registry/company/ui/$1") },
-      { find: /^@\/lib\/utils$/, replacement: resolve(rootDir, "registry/company/ui/utils/utils.ts") }
+      }
     ];
 
-    config.resolve.alias = Array.isArray(config.resolve.alias)
-      ? [...aliases, ...config.resolve.alias]
-      : aliases;
+    config.resolve.alias = Array.isArray(config.resolve.alias) ? [...aliases, ...config.resolve.alias] : aliases;
+
+    // Registry `@/` imports resolve against the registry copy that owns the importing file:
+    // registry/personal/** uses its own ui/, everything else uses registry/company/ui.
+    const personalDir = resolve(rootDir, "registry/personal");
+    config.plugins = [
+      ...(config.plugins ?? []),
+      {
+        name: "registry-at-aliases",
+        enforce: "pre",
+        async resolveId(source, importer, options) {
+          const uiDir = importer?.startsWith(`${personalDir}/`)
+            ? resolve(personalDir, "ui")
+            : resolve(rootDir, "registry/company/ui");
+          const target =
+            source === "@/lib/utils"
+              ? resolve(uiDir, "utils/utils.ts")
+              : source.startsWith("@/components/ui/")
+                ? resolve(uiDir, source.slice("@/components/ui/".length))
+                : null;
+
+          return target ? this.resolve(target, importer, { ...options, skipSelf: true }) : null;
+        }
+      }
+    ];
 
     return config;
   }

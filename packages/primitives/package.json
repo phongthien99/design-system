@@ -19,11 +19,12 @@
       "import": "./dist/checkbox/index.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup src/index.ts src/dialog/index.ts src/checkbox/index.ts --format esm --dts --clean",
     "dev": "tsup src/index.ts src/dialog/index.ts src/checkbox/index.ts --format esm --dts --watch",
-    "lint": "tsc --noEmit",
     "typecheck": "tsc --noEmit",
     "test": "vitest run --passWithNoTests"
   },
@@ -44,4 +45,3 @@
     "vitest": "^3.2.4"
   }
 }
-
