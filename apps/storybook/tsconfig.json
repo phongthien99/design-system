@@ -1,0 +1,7 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "include": [".storybook", "../../packages/*/src/**/*.stories.tsx", "../../registry/stories/**/*.tsx"],
+  "compilerOptions": {
+    "types": ["node"]
+  }
+}

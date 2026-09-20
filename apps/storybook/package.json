@@ -1,0 +1,37 @@
+{
+  "name": "@company/storybook",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "HOME=/tmp STORYBOOK_DISABLE_TELEMETRY=1 storybook build",
+    "build-storybook": "HOME=/tmp STORYBOOK_DISABLE_TELEMETRY=1 storybook build",
+    "dev": "HOME=/tmp STORYBOOK_DISABLE_TELEMETRY=1 storybook dev -p 6006 --host 0.0.0.0",
+    "lint": "tsc --noEmit",
+    "storybook": "HOME=/tmp STORYBOOK_DISABLE_TELEMETRY=1 storybook dev -p 6006 --host 0.0.0.0",
+    "test": "vitest run --passWithNoTests",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@company/icons": "workspace:*",
+    "@company/patterns": "workspace:*",
+    "@company/theme": "workspace:*",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "@storybook/addon-a11y": "^10.6.0",
+    "@storybook/addon-docs": "^10.6.0",
+    "@storybook/addon-vitest": "^10.6.0",
+    "@storybook/react-vite": "^10.6.0",
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "storybook": "^10.6.0",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.5",
+    "vitest": "^3.2.4",
+    "@vitest/browser": "3.2.7",
+    "@vitest/coverage-v8": "3.2.7",
+    "playwright": "latest"
+  }
+}

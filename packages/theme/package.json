@@ -1,0 +1,37 @@
+{
+  "name": "@company/theme",
+  "version": "0.1.0",
+  "type": "module",
+  "sideEffects": ["src/styles.css"],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles.css": "./src/styles.css",
+    "./tailwind-preset": {
+      "types": "./dist/tailwind-preset.d.ts",
+      "import": "./dist/tailwind-preset.js"
+    }
+  },
+  "files": ["dist", "src/styles.css"],
+  "scripts": {
+    "build": "tsup src/index.ts src/tailwind-preset.ts --format esm --dts --clean",
+    "dev": "tsup src/index.ts src/tailwind-preset.ts --format esm --dts --watch",
+    "lint": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@company/tokens": "workspace:*"
+  },
+  "devDependencies": {
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
+  }
+}
+

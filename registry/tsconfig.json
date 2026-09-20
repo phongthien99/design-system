@@ -1,0 +1,14 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["company/ui/*"],
+      "@/components/*": ["company/*"],
+      "@/components/ui/*": ["company/ui/*"],
+      "@/hooks/*": ["hooks/*"],
+      "@/lib/*": ["company/ui/utils/*"]
+    }
+  },
+  "include": ["company/**/*.ts", "company/**/*.tsx"]
+}

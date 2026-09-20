@@ -1,0 +1,2 @@
+export { themeClassName } from "./theme";
+

@@ -1,0 +1,7 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "company",
+  "homepage": "https://design.company.local",
+  "include": ["registry/company/ui/registry.json"]
+}
+

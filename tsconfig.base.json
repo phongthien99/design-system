@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "allowJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "declaration": true,
+    "declarationMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "@company/tokens": ["packages/tokens/src/index.ts"],
+      "@company/theme": ["packages/theme/src/index.ts"],
+      "@company/primitives": ["packages/primitives/src/index.ts"],
+      "@company/primitives/*": ["packages/primitives/src/*/index.ts"],
+      "@company/patterns": ["packages/patterns/src/index.ts"],
+      "@company/icons": ["packages/icons/src/index.tsx"],
+      "@/components/ui/*": ["registry/company/ui/*"],
+      "@/lib/utils": ["registry/company/ui/utils/utils.ts"]
+    }
+  }
+}
