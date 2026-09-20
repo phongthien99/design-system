@@ -1,0 +1,18 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { RadiusSamples } from "./blocks/scales";
+
+<Meta title="Foundations/Border & Radius" />
+
+# Border & Radius
+
+<RadiusSamples />
+
+## Semantic mapping
+
+`--radius-sm | md | lg | full` trỏ tới `--ds-radius-*` tương ứng và là tên component nên dùng.
+
+## Rule
+
+- Button, Input, Dialog, Table dùng radius token.
+- Không dùng `rounded-[7px]` hay giá trị tùy ý trong shared component.
+- Viền mặc định: `1px solid var(--color-border)`; viền form control: `var(--color-input)`.

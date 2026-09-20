@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Button } from "@/components/ui/button/button";
+import { Button } from "../../../../../registry/company/ui/primitives/button/button";
 import { EmptyState } from "./empty-state";
 
 const meta = {
-  title: "Patterns/EmptyState",
+  title: "Patterns/Empty State",
   component: EmptyState
 } satisfies Meta<typeof EmptyState>;
 

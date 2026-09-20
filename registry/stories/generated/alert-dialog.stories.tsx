@@ -8,7 +8,7 @@ const item = registry.items.find((entry) => entry.name === "alert-dialog") as Re
 const playground = playgrounds["alert-dialog"];
 
 const meta = {
-  title: "Registry/Company UI/Alert Dialog",
+  title: "Registry/Components/Alert Dialog",
   component: playground.component,
   args: playground.args,
   argTypes: playground.argTypes,

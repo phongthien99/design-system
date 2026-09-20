@@ -8,7 +8,7 @@ const item = registry.items.find((entry) => entry.name === "direction-provider")
 const playground = playgrounds["direction-provider"];
 
 const meta = {
-  title: "Registry/Company UI/Direction Provider",
+  title: "Registry/Components/Direction Provider",
   component: playground.component,
   args: playground.args,
   argTypes: playground.argTypes,

@@ -45,8 +45,8 @@ Registry Model MVP hiện dùng shadcn-compatible registry:
 registry.json
 registry/
   company/ui/registry.json
-  company/ui/button/button.tsx
-  company/ui/dialog/dialog.tsx
+  company/ui/primitives/button/button.tsx
+  company/ui/components/dialog/dialog.tsx
   stories/
 tooling/company-ui/
 templates/components.json
@@ -76,9 +76,9 @@ real package-manager install after package.json update
 | R8 - Không dùng Base UI trực tiếp | Partial | Product chưa tồn tại trong repo để enforce. Docs đã có rule. |
 | R9 - Product sở hữu Source | Done | `company-ui add <name>` copy source vào Product theo target trong registry. |
 | R10 - Dependency tự động | Partial | CLI tự thêm dependency vào `package.json`, chưa chạy package-manager install. |
-| R11 - Không overwrite | Partial | `add` không overwrite file nếu không có `--force`; chưa có `diff -> review -> apply`. |
-| R12 - Version Tracking | Done | CLI ghi `company-ui.json` với hash của registry item. |
-| R13 - Product chủ động update | Partial | Có `check` để báo update qua hash; chưa có `diff`/`update`. |
+| R11 - Không overwrite | Done | `add` không overwrite file có sẵn nếu không có `--force` (và `--force` không lan sang dependency). Có `diff`; `update` bỏ qua component ở trạng thái `conflict`. |
+| R12 - Version Tracking | Done | Version từng item ở `meta.version` (sổ cái `registry/company/ui/versions.json`, công cụ `pnpm registry:bump/check/log`), version release cả registry là `@company/registry` (Changesets). CLI ghi vào `company-ui.json` `version`, `registryVersion` và hash baseline từng file. |
+| R13 - Product chủ động update | Done | `check` so ba chiều (baseline, local, upstream) và phân biệt `update available`, `modified locally`, `conflict`; `diff` và `update` do Product tự chạy. |
 | R14 - CI kiểm tra chuẩn | Partial | Có script `typecheck`, `test`, `build`, Storybook build nhưng chưa có workflow CI. `typecheck` đã pass nhưng chưa có test file, visual test và a11y gate. |
 | R15 - Registry là source of truth | Done | Source chuẩn nằm trong `registry/company/ui`; `packages/ui` đã bị xóa. |
 | R16 - Không dùng `@company/ui` | Done | Workspace không còn package `@company/ui`; Product rule yêu cầu import local source. |
@@ -142,19 +142,28 @@ packages/primitives/src/checkbox/index.ts
 
 ### UI registry components
 
-`packages/ui` đã bị xóa. Source chuẩn nằm trong `registry/company/ui`. 10 item hiện có style riêng (class `ds-*` trong `packages/theme/src/styles.css`):
+`packages/ui` đã bị xóa. Source chuẩn nằm trong `registry/company/ui` và được chia theo taxonomy:
 
 ```txt
-registry/company/ui/button/button.tsx
-registry/company/ui/input/input.tsx
-registry/company/ui/checkbox/checkbox.tsx
-registry/company/ui/dialog/dialog.tsx
-registry/company/ui/form-field/form-field.tsx
-registry/company/ui/select/select.tsx
-registry/company/ui/switch/switch.tsx
-registry/company/ui/tabs/tabs.tsx
-registry/company/ui/tooltip/tooltip.tsx
-registry/company/ui/popover/popover.tsx
+registry/company/ui/primitives
+registry/company/ui/components
+registry/company/ui/composites
+registry/company/ui/utils
+```
+
+10 item hiện có style riêng (class `ds-*` trong `packages/theme/src/styles.css`):
+
+```txt
+registry/company/ui/primitives/button/button.tsx
+registry/company/ui/components/input/input.tsx
+registry/company/ui/components/checkbox/checkbox.tsx
+registry/company/ui/components/dialog/dialog.tsx
+registry/company/ui/composites/form-field/form-field.tsx
+registry/company/ui/components/select/select.tsx
+registry/company/ui/components/switch/switch.tsx
+registry/company/ui/components/tabs/tabs.tsx
+registry/company/ui/components/tooltip/tooltip.tsx
+registry/company/ui/components/popover/popover.tsx
 ```
 
 31 item còn lại là headless wrapper (xem bên dưới). Chưa có Table, Pagination, Textarea, Badge, Alert trong registry.
@@ -183,11 +192,11 @@ Có:
 ```txt
 registry.json
 registry/company/ui/registry.json
-registry/company/ui/button/button.tsx
-registry/company/ui/input/input.tsx
-registry/company/ui/checkbox/checkbox.tsx
-registry/company/ui/dialog/dialog.tsx
-registry/company/ui/form-field/form-field.tsx
+registry/company/ui/primitives/button/button.tsx
+registry/company/ui/components/input/input.tsx
+registry/company/ui/components/checkbox/checkbox.tsx
+registry/company/ui/components/dialog/dialog.tsx
+registry/company/ui/composites/form-field/form-field.tsx
 registry/company/ui/utils/utils.ts
 ```
 
@@ -297,12 +306,12 @@ Chưa validate bằng JSON schema hoặc `shadcn/schema` trong CI.
 
 ### Diff/update workflow
 
-Chưa có logic:
+Đã có `check` ba chiều, `diff`, `update` (xem [Registry Model Rules](11-registry-model-rules.md#check)). Còn thiếu:
 
-```bash
-company-ui diff button
-company-ui update button
-```
+- `check` luôn thoát mã 0 kể cả khi có `conflict` hay `update available`, nên chưa dùng làm gate CI cho product được.
+- `pnpm registry:check` (chặn item đổi mà chưa bump) chưa chạy trong CI. Mức bump do người chọn, công cụ không suy ra từ diff.
+- `update` ghi lại cả file đã `up to date` (kết quả giống nhau, chỉ thêm dòng `Overwrote`).
+- Chưa có test end-to-end cho luồng `add` → `check` → `update`; mới có unit test cho logic phân loại (`tooling/company-ui/src/tracking.test.ts`).
 
 ### Real package install
 

@@ -8,7 +8,7 @@ const item = registry.items.find((entry) => entry.name === "menubar") as Registr
 const playground = playgrounds["menubar"];
 
 const meta = {
-  title: "Registry/Company UI/Menubar",
+  title: "Registry/Components/Menubar",
   component: playground.component,
   args: playground.args,
   argTypes: playground.argTypes,

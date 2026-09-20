@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import registry from "../../company/ui/registry.json";
-import { Input } from "../../company/ui/input/input";
+import { Input } from "../../company/ui/components/input/input";
 import { RegistryStoryShell, type RegistryStoryItem } from "../registry-story-shell";
 
 const item = registry.items.find((entry) => entry.name === "input") as RegistryStoryItem;
 
 const meta = {
-  title: "Registry/Company UI/Input",
+  title: "Registry/Components/Input",
   component: Input,
   args: { placeholder: "Type something" },
   argTypes: {

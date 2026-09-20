@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import registry from "../../company/ui/registry.json";
-import { Button } from "../../company/ui/button/button";
+import { Button } from "../../company/ui/primitives/button/button";
 import { RegistryStoryShell, type RegistryStoryItem } from "../registry-story-shell";
 
 const item = registry.items.find((entry) => entry.name === "button") as RegistryStoryItem;
 
 const meta = {
-  title: "Registry/Company UI/Button",
+  title: "Registry/Primitives/Button",
   component: Button,
   args: { children: "Button" },
   argTypes: {

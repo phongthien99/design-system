@@ -1,0 +1,15 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { SpacingScale } from "./blocks/scales";
+
+<Meta title="Foundations/Spacing" />
+
+# Spacing
+
+Thang spacing dùng cho `padding`, `gap`, `margin`. Đơn vị cơ sở là `0.25rem` (4px).
+
+<SpacingScale />
+
+## Rule
+
+- Spacing trong component lấy từ CSS variable `--ds-spacing-*` hoặc Tailwind preset.
+- Không dùng magic number cho padding/gap/margin.

@@ -8,7 +8,7 @@ const item = registry.items.find((entry) => entry.name === "preview-card") as Re
 const playground = playgrounds["preview-card"];
 
 const meta = {
-  title: "Registry/Company UI/Preview Card",
+  title: "Registry/Composites/Preview Card",
   component: playground.component,
   args: playground.args,
   argTypes: playground.argTypes,

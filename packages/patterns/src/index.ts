@@ -1,2 +1,2 @@
-export { EmptyState } from "./empty-state";
-export type { EmptyStateProps } from "./empty-state";
+export { EmptyState } from "./patterns/empty-state";
+export type { EmptyStateProps } from "./patterns/empty-state";

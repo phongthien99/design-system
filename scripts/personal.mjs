@@ -144,12 +144,16 @@ async function listRelative(dir) {
   return (await listFiles(dir)).map((file) => path.relative(dir, file)).sort();
 }
 
-async function listFiles(dir) {
+// Release metadata belongs to the company registry only; the sandbox is not a versioned package.
+const releaseFiles = new Set(["package.json", "CHANGELOG.md", "versions.json"]);
+
+async function listFiles(dir, { root = dir } = {}) {
   const entries = await readdir(dir, { withFileTypes: true });
   const files = await Promise.all(
     entries.map((entry) => {
       const full = path.join(dir, entry.name);
-      return entry.isDirectory() ? listFiles(full) : [full];
+      if (entry.isDirectory()) return listFiles(full, { root });
+      return dir === root && releaseFiles.has(entry.name) ? [] : [full];
     })
   );
   return files.flat();

@@ -1,43 +1,45 @@
 import type { ArgTypes } from "@storybook/react-vite";
 import type { ComponentType } from "react";
-import { Accordion } from "../company/ui/accordion/accordion";
-import { AlertDialog } from "../company/ui/alert-dialog/alert-dialog";
-import { Autocomplete } from "../company/ui/autocomplete/autocomplete";
-import { Avatar } from "../company/ui/avatar/avatar";
-import { Checkbox } from "../company/ui/checkbox/checkbox";
-import { CheckboxGroup } from "../company/ui/checkbox-group/checkbox-group";
-import { Collapsible } from "../company/ui/collapsible/collapsible";
-import { Combobox } from "../company/ui/combobox/combobox";
-import { ContextMenu } from "../company/ui/context-menu/context-menu";
-import { CSPProvider } from "../company/ui/csp-provider/csp-provider";
-import { Dialog } from "../company/ui/dialog/dialog";
-import { DirectionProvider } from "../company/ui/direction-provider/direction-provider";
-import { Drawer } from "../company/ui/drawer/drawer";
-import { Field } from "../company/ui/field/field";
-import { Fieldset } from "../company/ui/fieldset/fieldset";
-import { Form } from "../company/ui/form/form";
-import { FormField } from "../company/ui/form-field/form-field";
-import { Menu } from "../company/ui/menu/menu";
-import { Menubar } from "../company/ui/menubar/menubar";
-import { Meter } from "../company/ui/meter/meter";
-import { NavigationMenu } from "../company/ui/navigation-menu/navigation-menu";
-import { NumberField } from "../company/ui/number-field/number-field";
-import { OTPField } from "../company/ui/otp-field/otp-field";
-import { Popover } from "../company/ui/popover/popover";
-import { PreviewCard } from "../company/ui/preview-card/preview-card";
-import { Progress } from "../company/ui/progress/progress";
-import { RadioGroup } from "../company/ui/radio-group/radio-group";
-import { ScrollArea } from "../company/ui/scroll-area/scroll-area";
-import { Select } from "../company/ui/select/select";
-import { Separator } from "../company/ui/separator/separator";
-import { Slider } from "../company/ui/slider/slider";
-import { Switch } from "../company/ui/switch/switch";
-import { Tabs } from "../company/ui/tabs/tabs";
-import { Toast } from "../company/ui/toast/toast";
-import { Toggle } from "../company/ui/toggle/toggle";
-import { ToggleGroup } from "../company/ui/toggle-group/toggle-group";
-import { Toolbar } from "../company/ui/toolbar/toolbar";
-import { Tooltip } from "../company/ui/tooltip/tooltip";
+import { Accordion } from "../company/ui/components/accordion/accordion";
+import { AlertDialog } from "../company/ui/components/alert-dialog/alert-dialog";
+import { Autocomplete } from "../company/ui/composites/autocomplete/autocomplete";
+import { Avatar } from "../company/ui/primitives/avatar/avatar";
+import { Checkbox } from "../company/ui/components/checkbox/checkbox";
+import { CheckboxGroup } from "../company/ui/composites/checkbox-group/checkbox-group";
+import { Collapsible } from "../company/ui/components/collapsible/collapsible";
+import { Combobox } from "../company/ui/composites/combobox/combobox";
+import { ContextMenu } from "../company/ui/components/context-menu/context-menu";
+import { CSPProvider } from "../company/ui/components/csp-provider/csp-provider";
+import { Dialog } from "../company/ui/components/dialog/dialog";
+import { DirectionProvider } from "../company/ui/components/direction-provider/direction-provider";
+import { Drawer } from "../company/ui/components/drawer/drawer";
+import { Field } from "../company/ui/components/field/field";
+import { Fieldset } from "../company/ui/components/fieldset/fieldset";
+import { Form } from "../company/ui/components/form/form";
+import { FormField } from "../company/ui/composites/form-field/form-field";
+import { Menu } from "../company/ui/components/menu/menu";
+import { Menubar } from "../company/ui/components/menubar/menubar";
+import { Meter } from "../company/ui/primitives/meter/meter";
+import { NavigationMenu } from "../company/ui/composites/navigation-menu/navigation-menu";
+import { NumberField } from "../company/ui/components/number-field/number-field";
+import { OTPField } from "../company/ui/composites/otp-field/otp-field";
+import { Pagination } from "../company/ui/composites/pagination/pagination";
+import { Popover } from "../company/ui/components/popover/popover";
+import { PreviewCard } from "../company/ui/composites/preview-card/preview-card";
+import { Progress } from "../company/ui/primitives/progress/progress";
+import { RadioGroup } from "../company/ui/components/radio-group/radio-group";
+import { ScrollArea } from "../company/ui/components/scroll-area/scroll-area";
+import { Select } from "../company/ui/components/select/select";
+import { Separator } from "../company/ui/primitives/separator/separator";
+import { Slider } from "../company/ui/components/slider/slider";
+import { Switch } from "../company/ui/components/switch/switch";
+import { Table } from "../company/ui/components/table/table";
+import { Tabs } from "../company/ui/components/tabs/tabs";
+import { Toast } from "../company/ui/components/toast/toast";
+import { Toggle } from "../company/ui/primitives/toggle/toggle";
+import { ToggleGroup } from "../company/ui/composites/toggle-group/toggle-group";
+import { Toolbar } from "../company/ui/composites/toolbar/toolbar";
+import { Tooltip } from "../company/ui/components/tooltip/tooltip";
 
 export type PlaygroundConfig = {
   args: Record<string, unknown>;
@@ -228,6 +230,15 @@ export const playgrounds: Record<string, PlaygroundConfig> = {
       validationType: choice(["numeric", "alpha", "alphanumeric", "none"])
     }
   },
+  pagination: {
+    component: Pagination,
+    args: { page: 3, pageCount: 8, siblingCount: 1 },
+    argTypes: {
+      page: number({ min: 1, max: 20, step: 1 }),
+      pageCount: number({ min: 1, max: 20, step: 1 }),
+      siblingCount: number({ min: 0, max: 3, step: 1 })
+    }
+  },
   popover: {
     component: Popover.Root,
     args: { defaultOpen: false, modal: false, side: "bottom", align: "center" },
@@ -283,6 +294,11 @@ export const playgrounds: Record<string, PlaygroundConfig> = {
     component: Switch.Root,
     args: { label: "Enable notifications", defaultChecked: true, disabled: false, readOnly: false, required: false },
     argTypes: { label: text, defaultChecked: bool, disabled: bool, readOnly: bool, required: bool }
+  },
+  table: {
+    component: Table,
+    args: {},
+    argTypes: {}
   },
   tabs: {
     component: Tabs.Root,

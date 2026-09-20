@@ -63,8 +63,8 @@ Tạo nền móng để component dùng token và theme thống nhất.
 
 - `@company/tokens`
 - `@company/theme`
-- `registry/company/ui/button`
-- `registry/company/ui/input`
+- `registry/company/ui/primitives/button`
+- `registry/company/ui/components/input`
 - `company-ui` CLI
 - Storybook chạy được.
 - Product demo add và import local được Button/Input.

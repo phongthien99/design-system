@@ -8,7 +8,7 @@ const item = registry.items.find((entry) => entry.name === "fieldset") as Regist
 const playground = playgrounds["fieldset"];
 
 const meta = {
-  title: "Registry/Company UI/Fieldset",
+  title: "Registry/Components/Fieldset",
   component: playground.component,
   args: playground.args,
   argTypes: playground.argTypes,

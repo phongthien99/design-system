@@ -9,7 +9,7 @@ const item = registry.items.find((entry) => entry.name === "accordion") as Regis
 const playground = playgrounds["accordion"];
 
 const meta = {
-  title: "Registry/Company UI/Accordion",
+  title: "Registry/Components/Accordion",
   component: playground.component,
   args: playground.args,
   argTypes: playground.argTypes,

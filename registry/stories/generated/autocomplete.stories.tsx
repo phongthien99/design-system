@@ -8,7 +8,7 @@ const item = registry.items.find((entry) => entry.name === "autocomplete") as Re
 const playground = playgrounds["autocomplete"];
 
 const meta = {
-  title: "Registry/Company UI/Autocomplete",
+  title: "Registry/Composites/Autocomplete",
   component: playground.component,
   args: playground.args,
   argTypes: playground.argTypes,

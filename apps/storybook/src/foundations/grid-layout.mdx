@@ -1,0 +1,32 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { GridDemo, GridTokens } from "./blocks/layout";
+
+<Meta title="Foundations/Grid & Layout" />
+
+# Grid & Layout
+
+Layout chính dùng lưới 12 cột với gutter cố định.
+
+<GridDemo />
+
+## Token
+
+<GridTokens />
+
+## Ví dụ
+
+```css
+.page {
+  display: grid;
+  gap: var(--ds-grid-gutter);
+  grid-template-columns: repeat(var(--ds-grid-columns), minmax(0, 1fr));
+  margin-inline: auto;
+  max-width: var(--ds-grid-container-lg);
+}
+```
+
+## Rule
+
+- Nội dung trang nằm trong container, không kéo full-width trên màn hình lớn.
+- Khoảng cách giữa các cột luôn là `--ds-grid-gutter`; khoảng cách trong component dùng token Spacing.
+- Container max-width tương ứng với các mốc ở trang Breakpoints.

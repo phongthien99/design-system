@@ -7,6 +7,7 @@ const rootDir = resolve(currentDir, "../../..");
 
 const config: StorybookConfig = {
   stories: [
+    "../src/**/*.mdx",
     "../../../packages/patterns/src/**/*.stories.@(ts|tsx)",
     "../../../registry/stories/**/*.stories.@(ts|tsx)",
     "../../../registry/personal/stories/**/*.stories.@(ts|tsx)"

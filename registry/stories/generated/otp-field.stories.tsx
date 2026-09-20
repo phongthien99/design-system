@@ -8,7 +8,7 @@ const item = registry.items.find((entry) => entry.name === "otp-field") as Regis
 const playground = playgrounds["otp-field"];
 
 const meta = {
-  title: "Registry/Company UI/Otp Field",
+  title: "Registry/Composites/Otp Field",
   component: playground.component,
   args: playground.args,
   argTypes: playground.argTypes,

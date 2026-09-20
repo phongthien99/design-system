@@ -8,7 +8,7 @@ const item = registry.items.find((entry) => entry.name === "progress") as Regist
 const playground = playgrounds["progress"];
 
 const meta = {
-  title: "Registry/Company UI/Progress",
+  title: "Registry/Primitives/Progress",
   component: playground.component,
   args: playground.args,
   argTypes: playground.argTypes,

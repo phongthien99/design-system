@@ -8,7 +8,7 @@ const item = registry.items.find((entry) => entry.name === "navigation-menu") as
 const playground = playgrounds["navigation-menu"];
 
 const meta = {
-  title: "Registry/Company UI/Navigation Menu",
+  title: "Registry/Composites/Navigation Menu",
   component: playground.component,
   args: playground.args,
   argTypes: playground.argTypes,

@@ -16,6 +16,7 @@
     "lib": "@/lib",
     "hooks": "@/hooks"
   },
+  "registry": "./registry.json",
   "registries": {
     "@company": "https://design.company.local/r/{name}.json"
   }

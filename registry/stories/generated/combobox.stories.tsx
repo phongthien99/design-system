@@ -8,7 +8,7 @@ const item = registry.items.find((entry) => entry.name === "combobox") as Regist
 const playground = playgrounds["combobox"];
 
 const meta = {
-  title: "Registry/Company UI/Combobox",
+  title: "Registry/Composites/Combobox",
   component: playground.component,
   args: playground.args,
   argTypes: playground.argTypes,

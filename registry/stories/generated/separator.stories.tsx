@@ -8,7 +8,7 @@ const item = registry.items.find((entry) => entry.name === "separator") as Regis
 const playground = playgrounds["separator"];
 
 const meta = {
-  title: "Registry/Company UI/Separator",
+  title: "Registry/Primitives/Separator",
   component: playground.component,
   args: playground.args,
   argTypes: playground.argTypes,

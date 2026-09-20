@@ -111,13 +111,34 @@ Versioning dùng semantic versioning:
 
 Mỗi PR thay đổi public package cần changeset.
 
-Ví dụ:
+Version có **hai cấp**:
 
-```txt
-registry/button: minor
+| Cấp | Đơn vị | Công cụ |
+| --- | --- | --- |
+| Từng component | `meta.version` trong registry item, sổ cái `registry/company/ui/versions.json` | `pnpm registry:bump` |
+| Cả registry | Package `@company/registry` (`registry/company/ui/package.json`, `private`, không publish npm) | Changesets |
 
-Add Dialog component with controlled and uncontrolled open state.
+Changesets chỉ bump được **workspace package**, nên nó version cả registry như một package. Còn version từng component do script `scripts/registry-version.mjs` quản lý.
+
+Quy trình khi sửa component:
+
+```bash
+pnpm registry:bump dialog minor -m "add controlled and uncontrolled open state"
 ```
+
+Lệnh này làm ba việc: tăng `meta.version` của item trong `registry.json`, ghi lịch sử vào `versions.json`, và **tự tạo changeset** cho `@company/registry` cùng mức bump, nội dung bắt đầu bằng tên component:
+
+```md
+---
+"@company/registry": minor
+---
+
+dialog: add controlled and uncontrolled open state.
+```
+
+Nhiều component đổi trong cùng một PR thì bump từng cái. Changesets gộp lại: version registry lấy mức **cao nhất**, changelog liệt kê từng component. Xem lịch sử một component bằng `pnpm registry:log <item>`.
+
+`pnpm registry:check` fail nếu có item đã đổi nội dung (file, dependencies, status) mà chưa bump, hoặc `meta.version` lệch với `versions.json`. Item mới thì chạy `pnpm registry:register` để ghi ở `0.1.0`. `bump` từ chối khi item chưa đổi gì, trừ khi có `--force`.
 
 Không cần changeset cho:
 

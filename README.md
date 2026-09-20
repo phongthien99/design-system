@@ -31,6 +31,7 @@ Product không tự tạo lại UI primitive hoặc component đã có trong Des
 - [Base UI Strategy](docs/10-base-ui-strategy.md)
 - [Registry Model Rules](docs/11-registry-model-rules.md)
 - [Registry Implementation Audit](docs/12-registry-implementation-audit.md)
+- [Component Taxonomy Levels](docs/13-component-taxonomy-levels.md)
 
 ## Kiến trúc mục tiêu
 
@@ -128,7 +129,9 @@ Registry source hiện nằm tại:
 ```txt
 registry.json
 registry/company/ui/registry.json
-registry/company/ui/*/*.tsx
+registry/company/ui/primitives/*/*.tsx
+registry/company/ui/components/*/*.tsx
+registry/company/ui/composites/*/*.tsx
 ```
 
 Muốn thử nghiệm mà không đụng vào source chuẩn: `pnpm personal:sync` tạo bản sandbox `registry/personal` (xem [Registry Model Rules](docs/11-registry-model-rules.md#personal-registry-sandbox)).

@@ -8,7 +8,7 @@ const item = registry.items.find((entry) => entry.name === "scroll-area") as Reg
 const playground = playgrounds["scroll-area"];
 
 const meta = {
-  title: "Registry/Company UI/Scroll Area",
+  title: "Registry/Components/Scroll Area",
   component: playground.component,
   args: playground.args,
   argTypes: playground.argTypes,

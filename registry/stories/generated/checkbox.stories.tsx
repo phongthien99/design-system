@@ -9,7 +9,7 @@ const item = registry.items.find((entry) => entry.name === "checkbox") as Regist
 const playground = playgrounds["checkbox"];
 
 const meta = {
-  title: "Registry/Company UI/Checkbox",
+  title: "Registry/Components/Checkbox",
   component: playground.component,
   args: playground.args,
   argTypes: playground.argTypes,

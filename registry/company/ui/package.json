@@ -1,0 +1,6 @@
+{
+  "name": "@company/registry",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Version marker for the Company UI registry. Not published: Changesets bumps it and writes CHANGELOG.md, and company-ui records it in a product's company-ui.json."
+}

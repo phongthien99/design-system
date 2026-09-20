@@ -8,7 +8,7 @@ const item = registry.items.find((entry) => entry.name === "radio") as RegistryS
 const playground = playgrounds["radio"];
 
 const meta = {
-  title: "Registry/Company UI/Radio",
+  title: "Registry/Components/Radio",
   component: playground.component,
   args: playground.args,
   argTypes: playground.argTypes,

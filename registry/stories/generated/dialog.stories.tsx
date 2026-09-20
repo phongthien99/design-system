@@ -9,7 +9,7 @@ const item = registry.items.find((entry) => entry.name === "dialog") as Registry
 const playground = playgrounds["dialog"];
 
 const meta = {
-  title: "Registry/Company UI/Dialog",
+  title: "Registry/Components/Dialog",
   component: playground.component,
   args: playground.args,
   argTypes: playground.argTypes,

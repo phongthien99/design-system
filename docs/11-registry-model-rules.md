@@ -38,7 +38,7 @@ Base UI ------> Company UI Registry
 | R9 - Product sở hữu Source | Sau khi `add`, source nằm trong Product và Product có thể customize. |
 | R10 - Dependency tự động | CLI phải tự kiểm tra/cài dependency cần thiết như `@base-ui/react`, icons. |
 | R11 - Không overwrite | `update` không được tự động ghi đè component đã customize; phải `diff -> review -> apply`. |
-| R12 - Version Tracking | Registry phải lưu version component để CLI có thể `check`, `diff`, `update`. |
+| R12 - Version Tracking | Version ba lớp: mỗi item có `meta.version` riêng (`pnpm registry:bump`); cả registry có version release `@company/registry` (Changesets) làm release note; CLI lưu **hash baseline từng file** trong `company-ui.json` để `check`, `diff`, `update` phát hiện lệch. |
 | R13 - Product chủ động update | Registry release mới không tự động làm thay đổi Product. |
 | R14 - CI kiểm tra chuẩn | Component trước khi đưa vào Registry phải qua lint, type-check, test, accessibility và visual test. |
 | R15 - Registry là source of truth | Source chuẩn của UI component nằm trong `registry/company/ui`, không nằm trong runtime package `packages/ui`. |
@@ -162,7 +162,7 @@ Rule:
 - Dùng `dependencies` cho npm packages như `@base-ui/react`, `lucide-react`, `class-variance-authority`.
 - Dùng `registryDependencies` cho component registry khác như `button`, `input`, `form-field`.
 - Dùng `files[].target` với placeholder `@ui/`, `@components/`, `@lib/`, `@hooks/` để CLI resolve theo `components.json` của Product.
-- Không tự tạo field riêng như `baseUi`, `tokens`, `version` trong item nếu muốn tương thích shadcn schema strict.
+- Không tự tạo field riêng ở cấp item như `baseUi`, `tokens`, `version` nếu muốn tương thích shadcn schema strict. Dữ liệu riêng của công ty đặt trong `meta` (object tự do theo schema), ví dụ `"meta": { "version": "1.2.0" }`.
 
 ## CLI command rule
 
@@ -232,11 +232,29 @@ Lợi ích:
 
 ### `check`
 
-`check` phải:
+`check` phải so sánh **ba chiều** cho từng file, không chỉ so registry với registry:
 
-- So sánh component local với registry version.
-- Báo component outdated.
-- Báo dependency thiếu.
+```txt
+baseline = hash source registry lúc add (lưu trong company-ui.json)
+local    = hash file hiện tại trong Product
+upstream = hash source registry hiện tại
+```
+
+| Điều kiện | Trạng thái | Ý nghĩa |
+| --- | --- | --- |
+| `local == upstream` | `up to date` | Không cần làm gì |
+| `local == baseline`, `upstream != baseline` | `update available` | Product chưa sửa, apply update an toàn |
+| `local != baseline`, `upstream == baseline` | `modified locally` | Product tự tùy biến, giữ nguyên |
+| cả hai cùng đổi khác nhau | `conflict` | Phải `diff` và review, không tự apply |
+| không có baseline, `local != upstream` | `differs from registry` | File có sẵn từ trước khi add, chưa rõ nguồn gốc |
+| file không còn trong Product | `missing locally` | |
+
+Ngoài ra `check`:
+
+- In version hiện tại của registry, và `(1.2.0 -> 1.3.0)` cho component có version item khác lúc add (nếu chưa có version item thì dùng `(registry 0.1.0 -> 0.2.0)`).
+- Báo `dependencies changed` khi source giống nhau nhưng metadata (dependencies) đổi.
+
+Khi `add` gặp file đã tồn tại và không có `--force`, file được bỏ qua nhưng baseline vẫn được giữ (hoặc ghi mới nếu chưa có), nên `check` không bao giờ báo `up to date` cho file thực tế đã lệch. `--force` chỉ áp cho component được yêu cầu, không lan sang dependency.
 
 ### `diff`
 
@@ -266,19 +284,41 @@ Ví dụ:
 
 ```json
 {
-  "registry": "https://registry.company.local/ui",
+  "registry": "../design-system/registry.json",
   "components": {
     "button": {
-      "version": "0.1.0",
-      "files": ["src/components/ui/button.tsx"]
-    },
-    "dialog": {
-      "version": "0.1.0",
-      "files": ["src/components/ui/dialog.tsx"]
+      "version": "1.2.0",
+      "registryVersion": "0.1.0",
+      "hash": "<sha256 của item: metadata + file>",
+      "files": ["components/ui/button.tsx"],
+      "fileHashes": {
+        "components/ui/button.tsx": "<sha256 source registry lúc add>"
+      },
+      "updatedAt": "2026-09-20T00:00:00.000Z"
     }
   }
 }
 ```
+
+Schema shadcn không có field `version` ở cấp item, nhưng có field `meta` là object tự do (`additionalProperties: true`). Vì vậy version từng item nằm ở `meta.version`, không phá schema. CLI đọc nó và ghi vào `version` của component ở product; `registryVersion` là version release của cả registry (`registry/company/ui/package.json`).
+
+## Registry versioning
+
+Ba lớp, mỗi lớp trả lời một câu hỏi khác nhau:
+
+| Lớp | Nguồn | Trả lời |
+| --- | --- | --- |
+| Version item (SemVer) | `meta.version` + `registry/company/ui/versions.json` (sổ cái: version, hash, lịch sử) | "Component này đổi ở mức nào?" (`button 1.2.0 -> 1.3.0`) |
+| Version registry (SemVer) | `@company/registry` + Changesets + `CHANGELOG.md` | "Cả registry có gì mới?" (release note) |
+| Hash từng file | `company-ui.json` | "File của tôi có lệch chuẩn không, lệch thế nào?" (`check`) |
+
+Ba lớp không thay thế nhau. Version item cho biết *mức* thay đổi nhưng không biết product đã sửa file chưa; hash biết đúng điều đó nhưng không biết mức. Changesets chỉ làm được cấp registry vì nó chỉ bump workspace package, nên cấp item do `scripts/registry-version.mjs` đảm nhiệm (`register`, `bump`, `check`, `log`), xem [Governance](06-governance-release.md#changeset-rule).
+
+Đảm bảo nhất quán:
+
+- Hash trong `versions.json` dùng cùng thuật toán với `hashItem` của CLI, nên bằng đúng hash CLI ghi vào `company-ui.json`.
+- `pnpm registry:check` chặn item đã đổi mà chưa bump. Hiện chưa có CI chạy nó, nên đang dựa vào việc tự chạy trước khi mở PR.
+- Version là do người bump chọn (`patch`/`minor`/`major`), công cụ không tự suy ra mức từ diff. Chọn sai mức thì CLI vẫn chạy đúng nhưng version sẽ nói sai về độ nghiêm trọng.
 
 ## Base UI rule trong Registry Model
 

@@ -8,7 +8,7 @@ const item = registry.items.find((entry) => entry.name === "csp-provider") as Re
 const playground = playgrounds["csp-provider"];
 
 const meta = {
-  title: "Registry/Company UI/Csp Provider",
+  title: "Registry/Components/Csp Provider",
   component: playground.component,
   args: playground.args,
   argTypes: playground.argTypes,

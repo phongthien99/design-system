@@ -60,4 +60,25 @@
   --ds-z-index-overlay: 100;
   --ds-z-index-modal: 110;
   --ds-z-index-toast: 120;
+
+  --ds-size-control-sm: 2rem;
+  --ds-size-control-md: 2.5rem;
+  --ds-size-control-lg: 3rem;
+  --ds-size-icon-sm: 0.75rem;
+  --ds-size-icon-md: 1rem;
+  --ds-size-icon-lg: 1.5rem;
+
+  --ds-duration-fast: 120ms;
+  --ds-duration-normal: 200ms;
+  --ds-duration-slow: 300ms;
+  --ds-easing-standard: ease;
+  --ds-easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
+  --ds-easing-accelerate: cubic-bezier(0.4, 0, 1, 1);
+
+  --ds-grid-columns: 12;
+  --ds-grid-gutter: 1rem;
+  --ds-grid-container-sm: 40rem;
+  --ds-grid-container-md: 48rem;
+  --ds-grid-container-lg: 64rem;
+  --ds-grid-container-xl: 80rem;
 }

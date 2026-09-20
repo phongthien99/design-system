@@ -101,6 +101,9 @@ importers:
       '@company/theme':
         specifier: workspace:*
         version: link:../../packages/theme
+      '@company/tokens':
+        specifier: workspace:*
+        version: link:../../packages/tokens
       react:
         specifier: ^19.1.1
         version: 19.3.0
@@ -248,6 +251,8 @@ importers:
       vitest:
         specifier: ^3.2.4
         version: 3.2.7(@types/node@24.13.6)(@vitest/browser@3.2.7)(jsdom@27.4.0)
+
+  registry/company/ui: {}
 
   tooling/company-ui:
     devDependencies:

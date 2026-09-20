@@ -8,7 +8,7 @@ const item = registry.items.find((entry) => entry.name === "toggle-group") as Re
 const playground = playgrounds["toggle-group"];
 
 const meta = {
-  title: "Registry/Company UI/Toggle Group",
+  title: "Registry/Composites/Toggle Group",
   component: playground.component,
   args: playground.args,
   argTypes: playground.argTypes,

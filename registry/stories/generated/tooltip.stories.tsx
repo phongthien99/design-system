@@ -8,7 +8,7 @@ const item = registry.items.find((entry) => entry.name === "tooltip") as Registr
 const playground = playgrounds["tooltip"];
 
 const meta = {
-  title: "Registry/Company UI/Tooltip",
+  title: "Registry/Components/Tooltip",
   component: playground.component,
   args: playground.args,
   argTypes: playground.argTypes,

@@ -1,0 +1,38 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { typography } from "@company/tokens";
+import { TokenTable } from "./blocks/token-table";
+import { TypeScale, FontWeights } from "./blocks/scales";
+
+<Meta title="Foundations/Typography" />
+
+# Typography
+
+## Font family
+
+<div style={{ fontFamily: "var(--ds-font-family-sans)", fontSize: "var(--ds-font-size-lg)" }}>
+  Aa Bb Cc — {typography.fontFamily.sans.split(",")[0]}
+</div>
+
+<TokenTable rows={[{ name: "--ds-font-family-sans", value: typography.fontFamily.sans }]} />
+
+## Font size
+
+<TypeScale />
+
+## Font weight
+
+<FontWeights />
+
+## Line height
+
+<TokenTable
+  rows={Object.entries(typography.lineHeight).map(([name, value]) => ({
+    name: `--ds-line-height-${name}`,
+    value
+  }))}
+/>
+
+## Rule
+
+- Không dùng font-size arbitrary trong shared component.
+- Heading scale phải có token.

@@ -1,0 +1,25 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { MotionDemo } from "./blocks/motion";
+
+<Meta title="Foundations/Motion" />
+
+# Motion
+
+Bấm vào thanh để xem từng duration và easing.
+
+<MotionDemo />
+
+## Ví dụ
+
+```css
+.button {
+  transition: background-color var(--ds-duration-fast) var(--ds-easing-standard);
+}
+```
+
+## Rule
+
+- Hover, focus và đổi trạng thái nhỏ dùng `fast`; overlay/drawer vào-ra dùng `normal` hoặc `slow`.
+- Phần tử **đi vào** màn hình dùng `decelerate`, phần tử **đi ra** dùng `accelerate`, còn lại dùng `standard`.
+- Không hard-code `ms` hay `cubic-bezier` trong shared component.
+- Tôn trọng `prefers-reduced-motion`: animation lớn cần có nhánh giảm hoặc tắt chuyển động.

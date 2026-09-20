@@ -1,0 +1,39 @@
+import { Meta, ColorPalette, ColorItem } from "@storybook/addon-docs/blocks";
+import { colors } from "@company/tokens";
+import { SemanticColors } from "./blocks/semantic-colors";
+
+<Meta title="Foundations/Color" />
+
+# Color
+
+Màu được chia hai tầng: **palette** (giá trị thô) và **semantic** (ý nghĩa sử dụng).
+
+## Palette
+
+Palette token có dạng `--ds-color-{nhóm}-{bậc}`. Chỉ dùng trong theme mapping, không dùng trực tiếp trong component.
+
+<ColorPalette>
+  <ColorItem title="Primary" subtitle="--ds-color-primary-*" colors={colors.primary} />
+  <ColorItem title="Neutral" subtitle="--ds-color-neutral-*" colors={colors.neutral} />
+  <ColorItem title="Success" subtitle="--ds-color-success-*" colors={colors.success} />
+  <ColorItem title="Warning" subtitle="--ds-color-warning-*" colors={colors.warning} />
+  <ColorItem title="Danger" subtitle="--ds-color-danger-*" colors={colors.danger} />
+</ColorPalette>
+
+## Semantic
+
+Component dùng semantic token. Giá trị bên dưới được đọc trực tiếp từ theme đang chạy.
+
+<SemanticColors />
+
+## Do / Don't
+
+**Do**
+
+- Dùng `--color-primary` cho hành động chính, `--color-danger` cho hành động phá hủy.
+- Kiểm tra tương phản text/nền đạt WCAG AA.
+
+**Don't**
+
+- Không dùng hex trực tiếp trong component.
+- Không truyền màu bằng `className` để override màu primary.

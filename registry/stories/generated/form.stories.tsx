@@ -8,7 +8,7 @@ const item = registry.items.find((entry) => entry.name === "form") as RegistrySt
 const playground = playgrounds["form"];
 
 const meta = {
-  title: "Registry/Company UI/Form",
+  title: "Registry/Components/Form",
   component: playground.component,
   args: playground.args,
   argTypes: playground.argTypes,

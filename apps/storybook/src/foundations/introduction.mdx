@@ -1,0 +1,46 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Introduction" />
+
+# Company Design System
+
+Storybook là portal chính cho BA, Design, Dev và Product: xem token, component, pattern và rule sử dụng.
+
+## Foundations
+
+Foundations là nền tảng visual của toàn bộ hệ thống. Mọi component dùng chung các token này, không tự quyết định màu, spacing, radius hay shadow.
+
+- **Color**: palette, semantic color
+- **Typography**: font family, size, weight, line-height
+- **Spacing**: thang spacing cho padding, gap, margin
+- **Sizing**: chiều cao control, kích thước icon
+- **Border & Radius**: radius token
+- **Shadow & Elevation**: shadow và thứ tự z-index
+- **Grid & Layout**: grid, gutter, container
+- **Iconography**: icon set và rule sử dụng
+- **Motion**: duration, easing
+- **Breakpoints**: breakpoint responsive
+
+## Cách dùng token
+
+Token được expose ở hai dạng, cùng một nguồn trong `@company/tokens`:
+
+```css
+/* CSS variable */
+.card {
+  padding: var(--ds-spacing-4);
+  border-radius: var(--radius-md);
+  color: var(--color-foreground);
+}
+```
+
+```ts
+// Giá trị TypeScript
+import { spacing, colors } from "@company/tokens";
+```
+
+Rule:
+
+- Component ưu tiên **semantic token** (`--color-*`), palette token (`--ds-color-*`) chỉ dùng trong theme mapping.
+- Không hard-code hex, spacing, radius, shadow, z-index trong shared component.
+- Thay đổi token: thêm mới là minor, đổi tên/xóa là breaking.

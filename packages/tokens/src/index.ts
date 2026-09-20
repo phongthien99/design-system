@@ -94,3 +94,40 @@ export const breakpoints = {
   lg: "1024px",
   xl: "1280px"
 } as const;
+
+export const sizing = {
+  control: {
+    sm: "2rem",
+    md: "2.5rem",
+    lg: "3rem"
+  },
+  icon: {
+    sm: "0.75rem",
+    md: "1rem",
+    lg: "1.5rem"
+  }
+} as const;
+
+export const motion = {
+  duration: {
+    fast: "120ms",
+    normal: "200ms",
+    slow: "300ms"
+  },
+  easing: {
+    standard: "ease",
+    decelerate: "cubic-bezier(0, 0, 0.2, 1)",
+    accelerate: "cubic-bezier(0.4, 0, 1, 1)"
+  }
+} as const;
+
+export const grid = {
+  columns: "12",
+  gutter: "1rem",
+  container: {
+    sm: "40rem",
+    md: "48rem",
+    lg: "64rem",
+    xl: "80rem"
+  }
+} as const;

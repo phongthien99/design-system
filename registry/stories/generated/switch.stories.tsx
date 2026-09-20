@@ -9,7 +9,7 @@ const item = registry.items.find((entry) => entry.name === "switch") as Registry
 const playground = playgrounds["switch"];
 
 const meta = {
-  title: "Registry/Company UI/Switch",
+  title: "Registry/Components/Switch",
   component: playground.component,
   args: playground.args,
   argTypes: playground.argTypes,

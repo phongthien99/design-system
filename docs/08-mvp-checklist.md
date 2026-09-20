@@ -47,7 +47,7 @@ MVP đầu tiên cần đủ để bắt đầu ép product dùng chung UI:
 - [x] Tạo `packages/icons` — mới có `CheckIcon`.
 - [x] Setup TypeScript base config.
 - [x] Setup ESLint/Prettier — `eslint.config.js` (typescript-eslint, react-hooks, jsx-a11y) và `.prettierrc.json`; chạy `pnpm lint`, `pnpm format:check`.
-- [x] Setup Changesets — có `.changeset/config.json`, chưa có changeset nào được add.
+- [x] Setup Changesets — có `.changeset/config.json` và package `@company/registry` (`registry/company/ui/package.json`) để version cả registry; chưa có changeset nào được add. Lưu ý `baseBranch` là `main` nhưng repo đang ở nhánh `master` và chưa có nhánh `main`, nên `changeset status` chỉ chạy được với `--since=master`.
 
 ## Token checklist
 
@@ -124,7 +124,7 @@ Chưa bắt đầu. Base UI không có Table nên đây là component tự thi�
 
 ### Form
 
-- [x] FormField — `registry/company/ui/form-field`.
+- [x] FormField — `registry/company/ui/composites/form-field`.
 - [x] Label.
 - [x] Help text — prop `description`.
 - [x] Error message — prop `error`.

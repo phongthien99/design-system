@@ -8,7 +8,7 @@ const item = registry.items.find((entry) => entry.name === "collapsible") as Reg
 const playground = playgrounds["collapsible"];
 
 const meta = {
-  title: "Registry/Company UI/Collapsible",
+  title: "Registry/Components/Collapsible",
   component: playground.component,
   args: playground.args,
   argTypes: playground.argTypes,

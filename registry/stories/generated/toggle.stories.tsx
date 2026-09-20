@@ -8,7 +8,7 @@ const item = registry.items.find((entry) => entry.name === "toggle") as Registry
 const playground = playgrounds["toggle"];
 
 const meta = {
-  title: "Registry/Company UI/Toggle",
+  title: "Registry/Primitives/Toggle",
   component: playground.component,
   args: playground.args,
   argTypes: playground.argTypes,

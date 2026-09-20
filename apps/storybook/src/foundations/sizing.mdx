@@ -1,0 +1,22 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { ControlSizes, IconSizes } from "./blocks/layout";
+
+<Meta title="Foundations/Sizing" />
+
+# Sizing
+
+## Control height
+
+Chiều cao dùng chung cho Button, Input và các form control cùng hàng, để chúng luôn thẳng hàng với nhau.
+
+<ControlSizes />
+
+## Icon size
+
+<IconSizes />
+
+## Rule
+
+- Control cùng hàng phải dùng cùng một size (`sm | md | lg`).
+- Không hard-code `height`/`width` cho control trong shared component, dùng `--ds-size-control-*`.
+- Icon mặc định là `md` (16px); dùng `lg` khi đứng riêng, `sm` khi nằm trong text nhỏ.

@@ -1,0 +1,29 @@
+import { Meta, IconGallery, IconItem } from "@storybook/addon-docs/blocks";
+import { CheckIcon } from "@company/icons";
+
+<Meta title="Foundations/Iconography" />
+
+# Iconography
+
+Icon là SVG component trong `@company/icons`, vẽ trên lưới 16×16, nét `2px`, dùng `currentColor` nên tự đổi theo màu chữ.
+
+<IconGallery>
+  <IconItem name="CheckIcon">
+    <CheckIcon />
+  </IconItem>
+</IconGallery>
+
+## Cách dùng
+
+```tsx
+import { CheckIcon } from "@company/icons";
+
+<CheckIcon width="var(--ds-size-icon-md)" height="var(--ds-size-icon-md)" />;
+```
+
+## Rule
+
+- Icon trang trí đã có `aria-hidden="true"` mặc định. Icon đứng một mình (button chỉ có icon) phải có `aria-label` ở phần tử tương tác.
+- Kích thước lấy từ token Sizing (`--ds-size-icon-*`), không dùng số tùy ý.
+- Màu kế thừa qua `currentColor`, không hard-code màu vào SVG.
+- Icon mới: 16×16 viewBox, `stroke="currentColor"`, `strokeWidth="2"`, bo tròn đầu nét.

@@ -1,0 +1,20 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { ShadowSamples, ZIndexTable } from "./blocks/scales";
+
+<Meta title="Foundations/Shadow & Elevation" />
+
+# Shadow & Elevation
+
+## Shadow
+
+<ShadowSamples />
+
+Overlay, popover, dialog dùng `--shadow-overlay`. Không dùng shadow tùy ý cho từng component.
+
+## Z-index
+
+Thứ tự từ cao xuống thấp. Modal phải cao hơn popover/dropdown.
+
+<ZIndexTable />
+
+Overlay component không hard-code z-index.

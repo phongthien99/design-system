@@ -14,15 +14,21 @@ export type RegistryStoryItem = {
   files?: RegistryFile[];
   name: string;
   registryDependencies?: string[];
+  status?: RegistryItemStatus;
   title?: string;
   type: string;
 };
+
+type RegistryItemStatus = "draft" | "public" | "deprecated";
 
 export function RegistryStoryShell({ item }: { item: RegistryStoryItem }) {
   return (
     <main style={styles.page}>
       <header style={styles.header}>
-        <span style={styles.kicker}>{item.type}</span>
+        <div style={styles.headerMeta}>
+          <span style={styles.kicker}>{item.type}</span>
+          <StatusBadge status={item.status ?? "draft"} />
+        </div>
         <h1 style={styles.title}>{item.title ?? item.name}</h1>
         <p style={styles.description}>{item.description ?? "Company UI registry item."}</p>
       </header>
@@ -56,15 +62,21 @@ export function RegistryStoryShell({ item }: { item: RegistryStoryItem }) {
   );
 }
 
-export function RegistryCatalog({ items }: { items: RegistryStoryItem[] }) {
+export function RegistryCatalog({
+  description = "Shadcn-compatible registry items backed by Base UI primitives and Company tokens.",
+  items,
+  title = "All UI Components"
+}: {
+  description?: string;
+  items: RegistryStoryItem[];
+  title?: string;
+}) {
   return (
     <main style={styles.page}>
       <header style={styles.header}>
         <span style={styles.kicker}>Company UI Registry</span>
-        <h1 style={styles.title}>All UI Components</h1>
-        <p style={styles.description}>
-          Shadcn-compatible registry items backed by Base UI primitives and Company tokens.
-        </p>
+        <h1 style={styles.title}>{title}</h1>
+        <p style={styles.description}>{description}</p>
       </header>
 
       <div style={styles.catalogGrid}>
@@ -72,8 +84,9 @@ export function RegistryCatalog({ items }: { items: RegistryStoryItem[] }) {
           <article key={item.name} style={styles.card}>
             <div style={styles.cardHeader}>
               <strong>{item.title ?? item.name}</strong>
-              <code style={styles.badge}>{item.type}</code>
+              <StatusBadge status={item.status ?? "draft"} />
             </div>
+            <code style={styles.typeBadge}>{item.type}</code>
             <p style={styles.cardText}>{item.description}</p>
             <CodeBlock>{`company-ui add ${item.name}`}</CodeBlock>
           </article>
@@ -130,16 +143,31 @@ function CodeBlock({ children }: { children: string }) {
   return <pre style={styles.code}>{children}</pre>;
 }
 
+function StatusBadge({ status }: { status: RegistryItemStatus }) {
+  return <code style={{ ...styles.statusBadge, ...statusStyles[status] }}>{status}</code>;
+}
+
+const statusStyles = {
+  deprecated: {
+    background: "color-mix(in srgb, var(--color-danger) 12%, transparent)",
+    borderColor: "var(--color-danger)",
+    color: "var(--color-danger)"
+  },
+  draft: {
+    background: "var(--color-muted)",
+    borderColor: "var(--color-border)",
+    color: "var(--color-muted-foreground)"
+  },
+  public: {
+    background: "color-mix(in srgb, var(--color-success) 14%, transparent)",
+    borderColor: "var(--color-success)",
+    color: "var(--color-success)"
+  }
+} satisfies Record<RegistryItemStatus, React.CSSProperties>;
+
 const styles = {
   arrow: {
     color: "var(--color-muted-foreground)"
-  },
-  badge: {
-    background: "var(--color-muted)",
-    border: "1px solid var(--color-border)",
-    borderRadius: "var(--radius-sm)",
-    fontSize: "12px",
-    padding: "2px 6px"
   },
   card: {
     border: "1px solid var(--color-border)",
@@ -201,6 +229,12 @@ const styles = {
     display: "grid",
     gap: "8px"
   },
+  headerMeta: {
+    alignItems: "center",
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "8px"
+  },
   kicker: {
     color: "var(--color-muted-foreground)",
     fontSize: "12px",
@@ -246,6 +280,14 @@ const styles = {
     overflow: "hidden",
     padding: "16px"
   },
+  statusBadge: {
+    border: "1px solid",
+    borderRadius: "var(--radius-sm)",
+    fontSize: "12px",
+    fontWeight: 700,
+    padding: "2px 6px",
+    textTransform: "uppercase"
+  },
   title: {
     fontSize: "32px",
     lineHeight: 1.1,
@@ -261,5 +303,9 @@ const styles = {
     display: "flex",
     flexWrap: "wrap",
     gap: "8px"
+  },
+  typeBadge: {
+    color: "var(--color-muted-foreground)",
+    fontSize: "12px"
   }
 } satisfies Record<string, React.CSSProperties>;

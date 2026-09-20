@@ -8,7 +8,7 @@ const item = registry.items.find((entry) => entry.name === "number-field") as Re
 const playground = playgrounds["number-field"];
 
 const meta = {
-  title: "Registry/Company UI/Number Field",
+  title: "Registry/Components/Number Field",
   component: playground.component,
   args: playground.args,
   argTypes: playground.argTypes,

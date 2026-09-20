@@ -1,11 +1,11 @@
 import type { ReactElement } from "react";
-import { Accordion } from "../company/ui/accordion/accordion";
-import { Autocomplete } from "../company/ui/autocomplete/autocomplete";
-import { Avatar } from "../company/ui/avatar/avatar";
-import { Button } from "../company/ui/button/button";
-import { Checkbox } from "../company/ui/checkbox/checkbox";
-import { Collapsible } from "../company/ui/collapsible/collapsible";
-import { Combobox } from "../company/ui/combobox/combobox";
+import { Accordion } from "../company/ui/components/accordion/accordion";
+import { Autocomplete } from "../company/ui/composites/autocomplete/autocomplete";
+import { Avatar } from "../company/ui/primitives/avatar/avatar";
+import { Button } from "../company/ui/primitives/button/button";
+import { Checkbox } from "../company/ui/components/checkbox/checkbox";
+import { Collapsible } from "../company/ui/components/collapsible/collapsible";
+import { Combobox } from "../company/ui/composites/combobox/combobox";
 import {
   Dialog,
   DialogClose,
@@ -15,40 +15,42 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger
-} from "../company/ui/dialog/dialog";
-import { Input } from "../company/ui/input/input";
-import { Menu } from "../company/ui/menu/menu";
-import { Meter } from "../company/ui/meter/meter";
-import { Popover } from "../company/ui/popover/popover";
-import { Progress } from "../company/ui/progress/progress";
-import { Radio } from "../company/ui/radio/radio";
-import { RadioGroup } from "../company/ui/radio-group/radio-group";
-import { ScrollArea } from "../company/ui/scroll-area/scroll-area";
-import { Select } from "../company/ui/select/select";
-import { Separator } from "../company/ui/separator/separator";
-import { Slider } from "../company/ui/slider/slider";
-import { Switch } from "../company/ui/switch/switch";
-import { Tabs } from "../company/ui/tabs/tabs";
-import { Toggle } from "../company/ui/toggle/toggle";
-import { Tooltip } from "../company/ui/tooltip/tooltip";
-import { AlertDialog } from "../company/ui/alert-dialog/alert-dialog";
-import { CheckboxGroup } from "../company/ui/checkbox-group/checkbox-group";
-import { ContextMenu } from "../company/ui/context-menu/context-menu";
-import { CSPProvider } from "../company/ui/csp-provider/csp-provider";
-import { DirectionProvider } from "../company/ui/direction-provider/direction-provider";
-import { Drawer } from "../company/ui/drawer/drawer";
-import { Field } from "../company/ui/field/field";
-import { Fieldset } from "../company/ui/fieldset/fieldset";
-import { Form } from "../company/ui/form/form";
-import { FormField } from "../company/ui/form-field/form-field";
-import { Menubar } from "../company/ui/menubar/menubar";
-import { NavigationMenu } from "../company/ui/navigation-menu/navigation-menu";
-import { NumberField } from "../company/ui/number-field/number-field";
-import { OTPField } from "../company/ui/otp-field/otp-field";
-import { PreviewCard } from "../company/ui/preview-card/preview-card";
-import { Toast } from "../company/ui/toast/toast";
-import { ToggleGroup } from "../company/ui/toggle-group/toggle-group";
-import { Toolbar } from "../company/ui/toolbar/toolbar";
+} from "../company/ui/components/dialog/dialog";
+import { Input } from "../company/ui/components/input/input";
+import { Menu } from "../company/ui/components/menu/menu";
+import { Meter } from "../company/ui/primitives/meter/meter";
+import { Popover } from "../company/ui/components/popover/popover";
+import { Progress } from "../company/ui/primitives/progress/progress";
+import { Radio } from "../company/ui/components/radio/radio";
+import { RadioGroup } from "../company/ui/components/radio-group/radio-group";
+import { ScrollArea } from "../company/ui/components/scroll-area/scroll-area";
+import { Select } from "../company/ui/components/select/select";
+import { Separator } from "../company/ui/primitives/separator/separator";
+import { Slider } from "../company/ui/components/slider/slider";
+import { Switch } from "../company/ui/components/switch/switch";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../company/ui/components/table/table";
+import { Tabs } from "../company/ui/components/tabs/tabs";
+import { Toggle } from "../company/ui/primitives/toggle/toggle";
+import { Tooltip } from "../company/ui/components/tooltip/tooltip";
+import { AlertDialog } from "../company/ui/components/alert-dialog/alert-dialog";
+import { CheckboxGroup } from "../company/ui/composites/checkbox-group/checkbox-group";
+import { ContextMenu } from "../company/ui/components/context-menu/context-menu";
+import { CSPProvider } from "../company/ui/components/csp-provider/csp-provider";
+import { DirectionProvider } from "../company/ui/components/direction-provider/direction-provider";
+import { Drawer } from "../company/ui/components/drawer/drawer";
+import { Field } from "../company/ui/components/field/field";
+import { Fieldset } from "../company/ui/components/fieldset/fieldset";
+import { Form } from "../company/ui/components/form/form";
+import { FormField } from "../company/ui/composites/form-field/form-field";
+import { Menubar } from "../company/ui/components/menubar/menubar";
+import { NavigationMenu } from "../company/ui/composites/navigation-menu/navigation-menu";
+import { NumberField } from "../company/ui/components/number-field/number-field";
+import { OTPField } from "../company/ui/composites/otp-field/otp-field";
+import { Pagination } from "../company/ui/composites/pagination/pagination";
+import { PreviewCard } from "../company/ui/composites/preview-card/preview-card";
+import { Toast } from "../company/ui/components/toast/toast";
+import { ToggleGroup } from "../company/ui/composites/toggle-group/toggle-group";
+import { Toolbar } from "../company/ui/composites/toolbar/toolbar";
 
 const fruits = ["Apple", "Banana", "Blueberry", "Grape", "Orange", "Strawberry"];
 const fruitItems = fruits.map((fruit) => ({ label: fruit, value: fruit.toLowerCase() }));
@@ -84,6 +86,7 @@ export function ComponentPreview({ name, props }: { name: string; props?: Previe
     "navigation-menu": NavigationMenuPreview,
     "number-field": NumberFieldPreview,
     "otp-field": OtpFieldPreview,
+    pagination: PaginationPreview,
     popover: PopoverPreview,
     "preview-card": PreviewCardPreview,
     progress: ProgressPreview,
@@ -94,6 +97,7 @@ export function ComponentPreview({ name, props }: { name: string; props?: Previe
     separator: SeparatorPreview,
     slider: SliderPreview,
     switch: SwitchPreview,
+    table: TablePreview,
     tabs: TabsPreview,
     toast: ToastPreview,
     toggle: TogglePreview,
@@ -824,6 +828,37 @@ function FormFieldPreview({
       <Input isInvalid={Boolean(error)} placeholder="name@company.com" />
     </FormField>
   );
+}
+
+function TablePreview() {
+  return (
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Project</TableHead>
+          <TableHead>Status</TableHead>
+          <TableHead>Owner</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {[
+          ["Design System", "Active", "Platform"],
+          ["Checkout", "Review", "Commerce"],
+          ["Analytics", "Draft", "Data"]
+        ].map(([project, status, owner]) => (
+          <TableRow key={project}>
+            <TableCell>{project}</TableCell>
+            <TableCell>{status}</TableCell>
+            <TableCell>{owner}</TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  );
+}
+
+function PaginationPreview({ page = 3, pageCount = 8, siblingCount = 1 }: PreviewProps) {
+  return <Pagination page={page} pageCount={pageCount} siblingCount={siblingCount} />;
 }
 
 function NumberFieldPreview({ defaultValue = 12, ...props }: PreviewProps) {

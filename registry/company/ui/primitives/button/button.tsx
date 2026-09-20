@@ -19,11 +19,12 @@ export const Button = React.forwardRef<React.ElementRef<typeof ButtonPrimitive>,
     return (
       <ButtonPrimitive
         ref={ref}
+        {...props}
+        aria-busy={isLoading || props["aria-busy"] ? true : undefined}
         className={mergeStateClassName(`ds-button ds-button--${variant} ds-button--${size}`, className)}
         data-loading={isLoading ? "true" : undefined}
         disabled={disabled || isLoading}
         type={type}
-        {...props}
       >
         {isLoading ? <span aria-hidden="true" className="ds-button-spinner" /> : null}
         {children}
