@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import registry from "../company/ui/registry.json";
-import { RegistryCatalog } from "./registry-story-shell";
+import { RegistryCatalog, type RegistryStoryItem } from "./registry-story-shell";
 
-const items = registry.items.filter((item) => item.type === "registry:ui");
+// JSON imports widen `status` to string, so assert the item shape the catalog expects.
+const items = (registry.items as RegistryStoryItem[]).filter((item) => item.type === "registry:ui");
 const primitives = items.filter((item) => item.files?.some((file) => file.path.startsWith("primitives/")));
 const components = items.filter((item) => item.files?.some((file) => file.path.startsWith("components/")));
 const composites = items.filter((item) => item.files?.some((file) => file.path.startsWith("composites/")));
