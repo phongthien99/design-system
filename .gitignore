@@ -5,4 +5,4 @@ storybook-static
 .DS_Store
 *.log
 registry/personal/
-
+.pnpm-store
