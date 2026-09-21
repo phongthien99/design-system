@@ -203,6 +203,8 @@ Không được hard-code trong shared component:
 
 Ngoại lệ phải có comment giải thích hoặc issue link.
 
+Rule được chặn bằng `ds/no-hardcoded-token` (chạy trong `pnpm lint`). Ngoại lệ dùng `// eslint-disable-next-line ds/no-hardcoded-token -- <lý do hoặc issue link>`.
+
 ## Token change rule
 
 Thay đổi token có thể ảnh hưởng toàn bộ product. Vì vậy:

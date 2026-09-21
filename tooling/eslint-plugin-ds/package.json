@@ -1,0 +1,18 @@
+{
+  "name": "@company/eslint-plugin-ds",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "scripts": {
+    "test": "node --test src/"
+  },
+  "devDependencies": {
+    "@eslint/css": "^2.0.0",
+    "eslint": "^9.39.5",
+    "typescript-eslint": "^8.70.0"
+  }
+}
