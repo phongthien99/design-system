@@ -263,7 +263,7 @@ function DrawerPreview({ swipeDirection = "down", ...props }: PreviewProps) {
 function SelectPreview(props: PreviewProps) {
   return (
     <Select.Root defaultValue="apple" items={fruitItems} {...props}>
-      <Select.Trigger>
+      <Select.Trigger aria-label="Fruit">
         <Select.Value placeholder="Choose fruit" />
         <Select.Icon />
       </Select.Trigger>
@@ -609,7 +609,7 @@ function SliderPreview({ defaultValue = 45, ...props }: PreviewProps) {
       <Slider.Control style={styles.sliderControl}>
         <Slider.Track style={styles.sliderTrack}>
           <Slider.Indicator style={styles.sliderIndicator} />
-          <Slider.Thumb style={styles.sliderThumb} />
+          <Slider.Thumb aria-label="Value" style={styles.sliderThumb} />
         </Slider.Track>
       </Slider.Control>
       <Slider.Value style={styles.bodyText} />
@@ -619,7 +619,7 @@ function SliderPreview({ defaultValue = 45, ...props }: PreviewProps) {
 
 function ProgressPreview({ value = 64, min = 0, max = 100, ...props }: PreviewProps) {
   return (
-    <Progress.Root value={value} min={min} max={max} style={styles.progressRoot} {...props}>
+    <Progress.Root aria-label="Progress" value={value} min={min} max={max} style={styles.progressRoot} {...props}>
       <Progress.Track style={styles.progressTrack}>
         <Progress.Indicator style={{ ...styles.progressIndicator, width: `${percentOf(value, min, max)}%` }} />
       </Progress.Track>
@@ -866,7 +866,7 @@ function NumberFieldPreview({ defaultValue = 12, ...props }: PreviewProps) {
     <NumberField.Root defaultValue={defaultValue} {...props}>
       <NumberField.Group style={styles.numberGroup}>
         <NumberField.Decrement style={styles.numberButton}>−</NumberField.Decrement>
-        <NumberField.Input style={styles.numberInput} />
+        <NumberField.Input aria-label="Quantity" style={styles.numberInput} />
         <NumberField.Increment style={styles.numberButton}>+</NumberField.Increment>
       </NumberField.Group>
     </NumberField.Root>
@@ -875,11 +875,20 @@ function NumberFieldPreview({ defaultValue = 12, ...props }: PreviewProps) {
 
 function OtpFieldPreview({ length = 6, ...props }: PreviewProps) {
   return (
-    <OTPField.Root length={length} style={styles.stack} {...props}>
-      {Array.from({ length }, (_, index) => (
-        <OTPField.Input key={index} className="ds-input ds-input--md" style={styles.otpInput} />
-      ))}
-    </OTPField.Root>
+    <Field.Root style={styles.previewGrid}>
+      {/* The first slot is labelled by Field.Label; Base UI ignores aria-label on it. */}
+      <Field.Label style={styles.label}>Verification code</Field.Label>
+      <OTPField.Root length={length} style={styles.stack} {...props}>
+        {Array.from({ length }, (_, index) => (
+          <OTPField.Input
+            key={index}
+            aria-label={index === 0 ? undefined : `Character ${index + 1} of ${length}`}
+            className="ds-input ds-input--md"
+            style={styles.otpInput}
+          />
+        ))}
+      </OTPField.Root>
+    </Field.Root>
   );
 }
 

@@ -140,7 +140,13 @@ function FileList({ files }: { files: RegistryFile[] }) {
 }
 
 function CodeBlock({ children }: { children: string }) {
-  return <pre style={styles.code}>{children}</pre>;
+  return (
+    // Scrollable regions must be keyboard reachable (axe: scrollable-region-focusable).
+    // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- keyboard access to horizontally scrolling code
+    <pre tabIndex={0} aria-label="Code sample" style={styles.code}>
+      {children}
+    </pre>
+  );
 }
 
 function StatusBadge({ status }: { status: RegistryItemStatus }) {

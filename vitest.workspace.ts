@@ -18,6 +18,8 @@ export default defineWorkspace([
     ],
     test: {
       name: "storybook",
+      // Story files load in one shared browser; running them in parallel makes Vite's dynamic imports flaky.
+      fileParallelism: false,
       browser: {
         enabled: true,
         headless: true,

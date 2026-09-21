@@ -11,6 +11,7 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "test:storybook": "vitest run --project storybook",
     "typecheck": "turbo typecheck && pnpm typecheck:registry",
     "typecheck:registry": "tsc -p registry/tsconfig.json --noEmit",
     "test": "turbo test && pnpm exec vitest run -c registry/vitest.config.ts",
