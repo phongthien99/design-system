@@ -11,6 +11,7 @@
   --ds-color-neutral-200: #e5e7eb;
   --ds-color-neutral-300: #d1d5db;
   --ds-color-neutral-500: #6b7280;
+  --ds-color-neutral-600: #4b5563;
   --ds-color-neutral-700: #374151;
   --ds-color-neutral-900: #111827;
 
@@ -20,6 +21,8 @@
   --ds-color-warning-600: #b45309;
   --ds-color-danger-500: #dc2626;
   --ds-color-danger-600: #b91c1c;
+
+  --ds-color-overlay-backdrop: rgb(17 24 39 / 0.45);
 
   --ds-spacing-0: 0;
   --ds-spacing-1: 0.25rem;

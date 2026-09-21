@@ -13,6 +13,7 @@ export const colors = {
     200: "#e5e7eb",
     300: "#d1d5db",
     500: "#6b7280",
+    600: "#4b5563",
     700: "#374151",
     900: "#111827"
   },
@@ -27,6 +28,9 @@ export const colors = {
   danger: {
     500: "#dc2626",
     600: "#b91c1c"
+  },
+  overlay: {
+    backdrop: "rgb(17 24 39 / 0.45)"
   }
 } as const;
 

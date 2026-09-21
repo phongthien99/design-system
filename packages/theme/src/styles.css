@@ -4,7 +4,7 @@
   --color-background: var(--ds-color-neutral-0);
   --color-foreground: var(--ds-color-neutral-900);
   --color-muted: var(--ds-color-neutral-100);
-  --color-muted-foreground: var(--ds-color-neutral-500);
+  --color-muted-foreground: var(--ds-color-neutral-600);
   --color-border: var(--ds-color-neutral-200);
   --color-input: var(--ds-color-neutral-300);
   --color-primary: var(--ds-color-primary-600);
@@ -17,6 +17,7 @@
   --color-danger-hover: var(--ds-color-danger-600);
   --color-danger-foreground: var(--ds-color-neutral-0);
   --color-ring: var(--ds-color-primary-500);
+  --color-overlay: var(--ds-color-overlay-backdrop);
 
   --radius-sm: var(--ds-radius-sm);
   --radius-md: var(--ds-radius-md);
@@ -341,7 +342,7 @@ body {
 }
 
 .ds-dialog-backdrop {
-  background: rgb(17 24 39 / 0.45);
+  background: var(--color-overlay);
   inset: 0;
   position: fixed;
   z-index: var(--z-index-overlay);

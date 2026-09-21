@@ -16,7 +16,8 @@ const semanticTokens: { name: string; usage: string }[] = [
   { name: "--color-danger", usage: "Hành động phá hủy, lỗi" },
   { name: "--color-danger-hover", usage: "Hover của danger" },
   { name: "--color-danger-foreground", usage: "Text trên nền danger" },
-  { name: "--color-ring", usage: "Focus ring" }
+  { name: "--color-ring", usage: "Focus ring" },
+  { name: "--color-overlay", usage: "Lớp phủ phía sau Dialog, Drawer" }
 ];
 
 /** Resolves each semantic token from the live theme so the table never drifts from styles.css. */
