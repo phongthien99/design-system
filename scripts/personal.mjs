@@ -17,6 +17,9 @@ const personalDir = path.join(rootDir, "registry/personal");
 const personalUi = path.join(personalDir, "ui");
 const personalStories = path.join(personalDir, "stories");
 
+// Release metadata belongs to the company registry only; the sandbox is not a versioned package.
+const releaseFiles = new Set(["package.json", "CHANGELOG.md", "versions.json"]);
+
 const storyRewrites = [
   // Relative imports: registry/stories -> registry/personal/stories, so `../company/ui` becomes `../ui`.
   [/\/company\/ui/g, "/ui"],
@@ -143,9 +146,6 @@ function printGroup(label, files) {
 async function listRelative(dir) {
   return (await listFiles(dir)).map((file) => path.relative(dir, file)).sort();
 }
-
-// Release metadata belongs to the company registry only; the sandbox is not a versioned package.
-const releaseFiles = new Set(["package.json", "CHANGELOG.md", "versions.json"]);
 
 async function listFiles(dir, { root = dir } = {}) {
   const entries = await readdir(dir, { withFileTypes: true });
