@@ -34,7 +34,7 @@ Ký hiệu: **(gate)** là bước đã có lệnh tự động chạy được.
 
 ## 2. Token và style
 
-- [ ] Không hard-code màu, radius, spacing, shadow (`#1677ff`, `6px`, `rounded-[6px]`). Dùng token hoặc semantic variable (`var(--color-primary)`, `var(--radius-md)`).
+- [ ] Không hard-code màu, radius, spacing, shadow (`#1677ff`, `6px`, `rounded-[6px]`). Dùng token hoặc semantic variable (`var(--color-primary)`, `var(--radius-md)`). Rule `ds/no-hardcoded-token` trong `pnpm lint` (gate) chặn hex/`rgb()`/`hsl()`, Tailwind arbitrary value (`rounded-[6px]`, `p-[13px]`, `z-[999]`), inline `style` có radius/spacing/shadow/z-index/màu lẻ, và CSS trong `packages/theme` có màu/radius/shadow/z-index lẻ. Ngoại lệ dùng `// eslint-disable-next-line ds/no-hardcoded-token -- <lý do>`.
 - [ ] Nếu thiếu token: thêm vào `packages/tokens` (và `packages/theme` nếu cần semantic variable), không viết giá trị lẻ vào component.
 - [ ] Style class `ds-*` nằm trong `packages/theme/src/styles.css`, đặt tên theo mẫu hiện có (`ds-button--primary`, `ds-button--md`).
 - [ ] Đã kiểm tra hiển thị với theme hiện có (light/dark nếu theme đã hỗ trợ).
@@ -64,7 +64,7 @@ Ký hiệu: **(gate)** là bước đã có lệnh tự động chạy được.
 - [ ] Disabled thật thì không focus, không click.
 - [ ] Overlay (Dialog, Popover, Tooltip): focus trap và restore focus đúng, có accessible title, Esc đóng khi phù hợp.
 - [ ] Base UI chỉ nằm sau wrapper: không export hoặc yêu cầu product import trực tiếp từ `@base-ui/react`.
-- [ ] Chạy `jsx-a11y` qua `pnpm lint` (gate) và xem tab Accessibility trong Storybook không có violation (thủ công, vì a11y test đang ở mức `todo`).
+- [ ] Chạy `jsx-a11y` qua `pnpm lint` (gate) và chạy `pnpm test:storybook` (gate: `parameters.a11y.test = "error"`, story nào có violation axe sẽ fail). Cần Playwright Chromium (`pnpm exec playwright install chromium`).
 
 ## 5. Test
 
@@ -185,10 +185,13 @@ Review:
 
 Các mục dưới đây hiện dựa vào việc tự kiểm và review, vì repo chưa có công cụ chặn:
 
-- Chặn hard-code token (chưa có lint rule).
-- A11y ở Storybook (`parameters.a11y.test` đang là `todo`).
 - Test bắt buộc (`--passWithNoTests`).
 - CI workflow chạy các lệnh ở mục 8 và visual test.
 - `company-ui diff` / `update` (mới có `check`).
 
 Khi các gate này được dựng, chuyển các mục tương ứng từ **(thủ công)** sang **(gate)** và cập nhật tài liệu này.
+
+Đã có gate tự động (không còn dựa vào tự kiểm):
+
+- Hard-code token: `pnpm lint` (rule `ds/no-hardcoded-token`, `tooling/eslint-plugin-ds`). Phạm vi: `registry/company/ui`, `packages/{icons,patterns,primitives,theme}`; không áp dụng cho `*.stories.*`, `*.test.*` và `packages/tokens` (nơi giá trị gốc được định nghĩa). Trong CSS không kiểm spacing vì hairline (`1px`, `2px`) là hợp lệ.
+- A11y ở Storybook: `pnpm test:storybook` chạy axe trên mọi story với `a11y.test = "error"`. Mặc định cần Playwright Chromium; chưa chạy trong CI vì chưa có workflow.

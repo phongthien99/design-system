@@ -13,7 +13,7 @@ Quy ước: `[x]` đã có và đã kiểm tra; `[ ]` chưa có hoặc chưa đ�
 | Component MVP | 6/8 có bản styled (Button, Input, Select, Checkbox, Dialog, Form); **chưa có Table và Pagination** |
 | Registry | 41 UI item (40 export của `@base-ui/react@1.8.0` + `form-field`) và `utils`; 10 item có style, 31 item là headless wrapper |
 | Test | **Chưa có test nào** (`vitest --passWithNoTests` nên `pnpm test` vẫn xanh) |
-| Storybook | Build pass, typecheck pass, 41 component story + catalog + EmptyState; chưa có Foundation/Overview page, a11y đang ở mức `todo` |
+| Storybook | Build pass, typecheck pass, 41 component story + catalog + EmptyState; chưa có Foundation/Overview page, a11y ở mức `error` (`pnpm test:storybook`) |
 | Release gate | Build, typecheck, lint, Storybook build đều pass |
 | Product pilot | Chưa bắt đầu |
 
@@ -153,7 +153,7 @@ Chưa bắt đầu, chưa có item trong registry.
 - [ ] Pattern pages — mới có `EmptyState`.
 - [x] Usage examples — `registry/stories/component-previews.tsx`.
 - [ ] Do/don't.
-- [ ] Accessibility notes — addon a11y đã cài nhưng `parameters.a11y.test` đang là `todo`.
+- [x] Accessibility gate — `parameters.a11y.test = "error"`, chạy bằng `pnpm test:storybook`. Notes riêng từng component vẫn chưa có.
 - [x] Props docs — `autodocs` bật toàn cục và có `argTypes` cho playground.
 
 ## Release checklist

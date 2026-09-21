@@ -67,7 +67,7 @@ real package-manager install after package.json update
 | Rule | Status | Ghi chú |
 | --- | --- | --- |
 | R1 - Tokens Shared | Done | Có `packages/tokens` với package `@company/tokens`. |
-| R2 - Token là nguồn chuẩn | Partial | Có token và theme CSS variables. Chưa có lint rule chặn hardcode. |
+| R2 - Token là nguồn chuẩn | Partial | Có token và theme CSS variables. Rule `ds/no-hardcoded-token` (`tooling/eslint-plugin-ds`) chặn hard-code trong `pnpm lint`. |
 | R3 - Semantic Tokens | Partial | Có semantic variables trong `packages/theme/src/styles.css`. Chưa chuẩn hóa đầy đủ tên như `--surface-default`, `--text-muted`. |
 | R4 - Component Registry | Done | Có root `registry.json` và `registry/company/ui/registry.json` theo shadcn schema. |
 | R5 - Source Distribution | Done | `company-ui add <name>` copy source vào Product theo `files[].target`. |
@@ -79,7 +79,7 @@ real package-manager install after package.json update
 | R11 - Không overwrite | Done | `add` không overwrite file có sẵn nếu không có `--force` (và `--force` không lan sang dependency). Có `diff`; `update` bỏ qua component ở trạng thái `conflict`. |
 | R12 - Version Tracking | Done | Version từng item ở `meta.version` (sổ cái `registry/company/ui/versions.json`, công cụ `pnpm registry:bump/check/log`), version release cả registry là `@company/registry` (Changesets). CLI ghi vào `company-ui.json` `version`, `registryVersion` và hash baseline từng file. |
 | R13 - Product chủ động update | Done | `check` so ba chiều (baseline, local, upstream) và phân biệt `update available`, `modified locally`, `conflict`; `diff` và `update` do Product tự chạy. |
-| R14 - CI kiểm tra chuẩn | Partial | Có script `typecheck`, `test`, `build`, Storybook build nhưng chưa có workflow CI. `typecheck` đã pass nhưng chưa có test file, visual test và a11y gate. |
+| R14 - CI kiểm tra chuẩn | Partial | Có script `typecheck`, `test`, `build`, Storybook build nhưng chưa có workflow CI. Có a11y gate qua `pnpm test:storybook` nhưng chưa chạy trong CI; chưa có visual test. |
 | R15 - Registry là source of truth | Done | Source chuẩn nằm trong `registry/company/ui`; `packages/ui` đã bị xóa. |
 | R16 - Không dùng `@company/ui` | Done | Workspace không còn package `@company/ui`; Product rule yêu cầu import local source. |
 | R17 - Xóa runtime UI package | Done | Đã gỡ `packages/ui` khỏi repo, Storybook, tsconfig và lockfile. |
@@ -183,7 +183,7 @@ packages/patterns/src/**/*.stories.tsx
 registry/stories/**/*.stories.tsx
 ```
 
-Hiện có 41 story component (`registry/stories/generated`, mỗi component có `Overview` và `Playground`), story `Registry/All Components` và story `EmptyState`. Addon `docs`, `a11y`, `vitest` đã cài; a11y đang ở mức `todo`, chưa chặn build. Storybook build và typecheck đều pass.
+Hiện có 41 story component (`registry/stories/generated`, mỗi component có `Overview` và `Playground`), story `Registry/All Components` và story `EmptyState`. Addon `docs`, `a11y`, `vitest` đã cài; a11y ở mức `error` (`pnpm test:storybook` fail nếu có violation axe).
 
 ### Shadcn-compatible registry
 
@@ -339,7 +339,7 @@ Chưa có test file nào trong repo. Mục tiêu đầu tiên: Button, Input, Ch
 
 ### Visual/a11y gate
 
-Chưa có visual regression tool. Addon a11y đã cài nhưng chưa bật chế độ chặn (`a11y.test` đang là `todo`).
+Chưa có visual regression tool. A11y đã bật chế độ chặn (`parameters.a11y.test = "error"`), chạy bằng `pnpm test:storybook`; chưa gắn vào CI.
 
 ## Roadmap tiếp theo
 
