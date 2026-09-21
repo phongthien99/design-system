@@ -1,0 +1,13 @@
+# The Docker image that will be used to build your app
+image: "image: node:22"
+pages:
+  stage: deploy
+  <<: *setup
+  script:
+    - pnpm build:storybook
+    - mv apps/storybook/storybook-static public
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
